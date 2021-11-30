@@ -1,0 +1,58 @@
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+    margin-left: -4rem;
+}
+
+.btn{
+    border-width: 2px;
+    border-color: white ; 
+    background-color: dodgerblue;
+}
+
+.login{
+max-width: 10%;
+margin-left: 10px;
+}
+.home{
+    max-width: 100rem;
+    height: 40rem;
+    background: linear-gradient(to top, dodgerblue, #1cb5e0);
+    
+    
+}
+.navbar-expand .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    margin-left: 50rem;
+}
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+    width: 40%;
+    margin-left: 41rem;
+    margin-top: -18rem;
+    text-align: justify;
+}
+
+.mt-2{
+        margin-top: 6.5rem !important;
+        margin-left: 1rem;
+    
+}
+
+button.btn.btn-primary.comenzar1{
+    margin-left: 55rem;
+}
+
+.text-lg-start {
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    width: 100rem;
+    height: 100px;
+    color:white;
+}
+
+.img-home{
+margin-top: 4rem;
+}
