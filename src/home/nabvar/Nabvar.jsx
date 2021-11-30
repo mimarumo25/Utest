@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Navbar } from 'react-bootstrap';
 import logo from '../../img/UTEST (1).png'
 import login from '../../img/login.png'
-import './nabvar.css'
+import '../slyle-home.css'
 
 
 

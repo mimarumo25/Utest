@@ -1,5 +1,5 @@
 import Footer from "./home/footer/Footer";
-import Home from "./home/Home";
+import Home from './home/principal/Home.jsx';
 import Nabvar from "./home/nabvar/Nabvar";
 
 function App() {
