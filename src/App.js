@@ -1,11 +1,12 @@
-import Footer from "./home/footer/Footer";
-import Home from './home/principal/Home.jsx';
-import Nabvar from "./home/nabvar/Nabvar";
+import Footer from "./components/footer/Footer.jsx";
+import Home from './components/home/Home.jsx';
+import NavBar from "./components/navbar/Navbar.jsx";
+
 
 function App() {
   return (
     <div >
-      <Nabvar/>
+      <NavBar/>
       <Home/>
       <Footer/>
     </div>

@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Navbar } from 'react-bootstrap';
 import logo from '../../img/UTEST (1).png'
 import login from '../../img/login.png'
-import '../slyle-home.css'
+import '../../styles/slyle-home.css'
 
 
 
-const Nabvar = () => {
+const NavBar = () => {
     return (
       <div>
         <Navbar bg="primary">
@@ -25,4 +25,4 @@ const Nabvar = () => {
     );
 }
 
-export default Nabvar
+export default NavBar
