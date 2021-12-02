@@ -1,14 +1,11 @@
-import Footer from "./components/footer/Footer.jsx";
-import Home from './components/home/Home.jsx';
-import NavBar from "./components/navbar/Navbar.jsx";
+import AppRouter from "./routers/AppRouter";
 
 
 function App() {
   return (
     <div >
-      <NavBar/>
-      <Home/>
-      <Footer/>
+      
+      <AppRouter/>
     </div>
   );
 }

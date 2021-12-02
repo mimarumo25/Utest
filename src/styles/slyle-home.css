@@ -56,3 +56,48 @@ button.btn.btn-primary.comenzar1{
 .img-home{
 margin-top: 4rem;
 }
+
+.vimi{
+    
+    padding: 25px;
+    background-color: aqua;
+}
+
+.vi{
+    margin-top: 10%;
+}
+
+.tituloacercade{
+    font-size: 25px;
+    font-family:  'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif  ;
+    text-align: center;
+}
+
+.formlogin{
+    display: flex;
+flex-direction: column;
+align-items: center;
+padding: 3%;
+
+position: static;
+width: 90%;
+height: 414px;
+left: 400px;
+top: 0px;
+
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 2;
+flex-grow: 0;
+margin: 0px 24px;
+}
+
+.itemsform{
+    justify-content: center;
+}
+
+.error{
+    color:red;
+}

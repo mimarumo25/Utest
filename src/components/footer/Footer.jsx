@@ -7,8 +7,8 @@ const Footer = () => {
 <footer className="bg-primary text-center text-lg-start ">
   
   <div className="text-center p-3" >
-    © 2020 Copyright:
-    <a className="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    Todos los derechos reservados 2022
+    <p> Test Vocacional</p>
   </div>
  
 </footer>
