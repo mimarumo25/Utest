@@ -8,7 +8,7 @@ const Principal = () => {
     <div>
       <NavBar />
       <Home />
-      <Footer />
+      <Footer/>
     </div>
   );
 };
