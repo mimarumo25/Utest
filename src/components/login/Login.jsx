@@ -6,6 +6,7 @@ import { loginEmailPassword, loginGoogle } from "../../actions/loginAction";
 import { Formik } from 'formik'
 import logo from '../../img/UTEST (4).png'
 import Footer from "../footer/Footer";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [envioformulario, setenvioformulario] = useState(false)
@@ -111,10 +112,10 @@ const Login = () => {
                     <hr className="mt-2" />
                     <span>
                       ¿No tienes cuenta?{" "}
-                      <a href="#" onClick={() => redirectRegister("/register")}>
+                      <Link to="/register">
                         {" "}
                         Registrate Aquí
-                      </a>
+                      </Link>
                       <hr />
                     </span>
                   </Form>
