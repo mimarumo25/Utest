@@ -1,44 +1,48 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Navbar } from "react-bootstrap";
-import logo from "../../img/utestprov.png";
-import login from "../../img/login.png";
+import logo from "../../img/UTEST (4).png";
 import "../../styles/slyle-home.css";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { Icon } from '@iconify/react';
 
 const NavBar = () => {
 
-  const redirecthome = useNavigate()
-  const redirectabout = useNavigate()
-  const redirectlogin = useNavigate()
-  const redirectregister = useNavigate()
 
 
   return (
     <div>
-      <Navbar bg="primary">
-        <Container>
-          <Navbar.Brand href="#home">
-            <img src={logo} alt="logo" class="img-fluid" onClick={() => redirecthome("/")}/>{" "}
+      <Container >
+        <Navbar>
+          <Navbar.Brand >
+            <Link to="/">
+              <div>
+                <img src={logo} alt="logo" className="img-fluid logo" />{" "}
+              </div>
+            </Link>
+
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          <Navbar.Collapse className="justify-content-end respose">
             <Navbar.Text>
-              <button className="btn btn-primary " href="#login" onClick={() => redirectabout("/about")}>
-               Acerca de
-              </button>{" "}
-              <button className="btn btn-primary" href="#login" onClick={() => redirectregister("/register")}>
-                Registro
-              </button>{" "}
-              <button className="btn btn-primary" href="#login" onClick={() => redirectlogin("/login")}>
-                Iniciar sesión
-              </button>{" "}
-              <img src={login} alt="login" class="login" />
+              <Link to="/about">
+                <button className="btn btn-primary ">
+                  Acerca de
+                </button>
+              </Link>
+              {" "}
+              <Link to="/register">
+                <button className="btn btn-primary">
+                  Registro
+                </button>
+              </Link>{" "}
+              <Link to="/login">
+                <Icon icon="bx:bx-user-circle" height="50" />
+              </Link>{" "}
             </Navbar.Text>
           </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        </Navbar>       
+      </Container>
     </div>
   );
 };
