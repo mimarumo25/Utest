@@ -1,6 +1,6 @@
 import { Button, Card, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { loginEmailPassword, loginGoogle } from "../../actions/loginAction";
+import { loginEmailPassword, loginFacebok, loginGoogle } from "../../actions/loginAction";
 import { Formik } from 'formik'
 import logo from '../../img/UTEST (4).png'
 import Footer from "../footer/Footer";
@@ -13,7 +13,7 @@ const Login = () => {
     dispatch(loginGoogle())
   }
   const handleLoginFacebook = () => {
-
+    dispatch(loginFacebok())
   }
  
   return (
@@ -25,18 +25,18 @@ const Login = () => {
           password: ''
         }}
 
-        // validate={(valores)=>{
-        //     let errores ={}
-        //     //Validación Email
-        //     if(!valores.email){
-        //         errores.email = 'Por favor ingresa un email'
-        //     }        
-        //     return errores;
+        validate={(valores)=>{
+            let errores ={}
+           
+            if(!valores.email){
+                errores.email = 'Por favor ingresa un email'
+            }        
+             return errores;
 
         //Validación Password
 
 
-        // }}
+         }}
 
         onSubmit={(valores, { resetForm }) => {
           // setenvioformulario(true)

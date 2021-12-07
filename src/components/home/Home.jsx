@@ -5,15 +5,13 @@ import p1 from '../../img/inteligencias.png';
 import p2 from '../../img/vocacional.png';
 import p3 from '../../img/cerebro.png';
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+
 
 const Home = () => {
-  const  user  = useSelector(store => store.login);
-  console.log(user);
+  
 
   return (
     <div className="container-lg">
-      <h1>{user.name}</h1>
       <h1 className="text-end">Descubre oportunidades de elegir tu futuro</h1>
       <div className="d-flex">
         <img className="img-home" src={home} alt="home" />
@@ -35,8 +33,8 @@ const Home = () => {
 
       <div className="d-flex justify-content-between my-5" id="pruebas">
 
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={p1} className="imgCard" />
+        <Card style={{ width: '18rem' }} className="Cards">
+          <Card.Img variant="top" src={p1} className="imgCard " />
           <Card.Body>
             <Card.Title className="text-center">Test de Inteligencia</Card.Title>
             <Card.Text>
@@ -54,7 +52,7 @@ const Home = () => {
           </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className="Cards">
           <Card.Img variant="top" src={p3} className="imgCard" />
           <Card.Body>
             <Card.Title className="text-center">Test Vocacional</Card.Title>
@@ -75,7 +73,7 @@ const Home = () => {
           </Card.Body>
         </Card>
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className="Cards">
           <Card.Img variant="top" src={p2} className="imgCard" />
           <Card.Body>
             <Card.Title className="text-center">Test Vocacional</Card.Title>
