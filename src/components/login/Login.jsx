@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
 import { loginEmailPassword, loginGoogle } from "../../actions/loginAction";
 import { Formik } from 'formik'
 import logo from '../../img/UTEST (4).png'
@@ -9,19 +7,15 @@ import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [envioformulario, setenvioformulario] = useState(false)
-  const redirectRegister = useNavigate();
   const dispatch = useDispatch()
-
-
-
+ 
   const handleLoginGoogle = () => {
     dispatch(loginGoogle())
   }
   const handleLoginFacebook = () => {
 
   }
-
+ 
   return (
     <>
 
@@ -55,7 +49,9 @@ const Login = () => {
           <div className="home">
             <div className="itemsform">
               <div className="my-3">
+                <Link to="/">
                 <img src={logo} alt="Logo" className="logoUser " />
+                </Link>
               </div>
               <Card>
                 <Card.Header><h1 className="text-center">LOGIN</h1></Card.Header>
@@ -131,6 +127,6 @@ const Login = () => {
       <Footer/>
     </>
   );
-};
+}
 
 export default Login;

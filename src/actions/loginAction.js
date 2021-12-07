@@ -1,13 +1,14 @@
-import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth"
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "@firebase/auth"
 import { google } from "../firebase/firebase"
 import { types } from "../types/types"
 
-export const login = (id, displayname) =>{
+export const login = (id, displayname, image) =>{
     return {
         type: types.login,
         payload:{
             id,
-            displayname
+            displayname,
+            image
         }
     }
 }
@@ -17,8 +18,8 @@ export const loginGoogle = () =>{
         const auth = getAuth()
         signInWithPopup(auth,google)
         .then(({user})=>{
-            console.log(user)
-            dispatch(login(user.uid, user.displayName))
+            
+            dispatch(login(user.uid, user.displayName, user.photoURL))
         })
         .catch(e=>{
             console.log(e)
@@ -26,17 +27,36 @@ export const loginGoogle = () =>{
     }
 }
 
-export const loginEmailPassword = (email,password) => {
+export const loginEmailPassword = (email,password,image) => {
     return (dispatch) => {
         const auth = getAuth()
-        signInWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password,image)
         .then(({user})=>{
-            dispatch(login(user.uid, user.displayName))
-            console.log('Bienvenido' + user.displayName)
+            dispatch(login(user.uid, user.displayName, user.photoURL))
+            
         })
         .catch(error => {
             console.log(error)
             console.log('El usuario no existe')
+        })
+    }
+}
+
+export const logoutSincrono = () => {
+    return{
+        type: types.logout,
+    }
+ }
+export const logout = () => {
+
+    return(dispatch) => {
+        const auth = getAuth();
+        signOut(auth)
+        .then(user => {
+            dispatch(logoutSincrono())
+        })
+        .catch(error => {
+            console.log(error);
         })
     }
 }

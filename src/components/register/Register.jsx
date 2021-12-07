@@ -1,22 +1,25 @@
 import { Formik } from "formik";
 import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { Link} from "react-router-dom";
 import { registerEmailPassword } from "../../actions/registerAction";
 import Footer from "../footer/Footer";
-import NavBar from "../navbar/Navbar";
+import { fileUpload } from "../helpers/FileUpload";
+import logo from '../../img/UTEST (4).png'
 
 const Register = () => {
   const dispatch = useDispatch();
+ 
+ 
   return (
     <div>
-      <NavBar />
+     
 
       <Formik
         initialValues={{
-          name:'',
-          file:'',
+          name: '',
+          file: '',
           email: "",
           password1: "",
           password2: "",
@@ -25,6 +28,8 @@ const Register = () => {
           if (valores.password1 === valores.password2) {
             dispatch(
               registerEmailPassword(
+                valores.name,
+                valores.file,
                 valores.email,
                 valores.password1,
               )
@@ -48,11 +53,16 @@ const Register = () => {
         }) => (
           <div className="home">
             <div className="itemsform">
+            <div className="my-3">
+                <Link to="/">
+                <img src={logo} alt="Logo" className="logoUser " />
+                </Link>
+              </div>
               <Card>
                 <Card.Header><h1 className="text-center">REGISTRO</h1></Card.Header>
                 <Card.Body>
                   <Form className="formlogin" onSubmit={handleSubmit}>
-                  <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Group className="mb-3" controlId="formBasicName">
                       <Form.Label>Ingresa tu Nombre</Form.Label>
                       <Form.Control
                         type="text"
@@ -65,21 +75,31 @@ const Register = () => {
                       {touched.email && errors.email && (
                         <div className="error">{errors.email}</div>
                       )}
-                      </Form.Group>
-                      <Form.Group className="mb-3" controlId="formBasicFile">
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicFile">
                       <Form.Label>Carga tu Foto</Form.Label>
                       <Form.Control
                         type="file"
                         placeholder="Ingresa tu Nombre"
                         name="file"
                         value={values.file}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          const file = e.target.files[0]
+                          fileUpload(file)
+                            .then(response => {
+                              values.file = response
+                              console.log(values.file);
+                            })
+                            .catch(error => {
+                              console.log(error.message);
+                            })
+                        }}
                         onBlur={handleBlur}
                       />
                       {touched.file && errors.file && (
                         <div className="error">{errors.file}</div>
                       )}
-                      </Form.Group>
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                       <Form.Label>Ingresa tu email</Form.Label>
                       <Form.Control
@@ -108,7 +128,7 @@ const Register = () => {
                       />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Group className="mb-3" controlId="formBasicPassword1">
                       <Form.Label>Ingresa una contraseña</Form.Label>
                       <Form.Control
                         type="password"
@@ -119,13 +139,12 @@ const Register = () => {
                         onBlur={handleBlur}
                       />
                     </Form.Group>
-
                     <hr />
-
-                    <Button variant="primary" type="submit">
-                      Registrarse
-                    </Button>
-
+                    <div className="d-grid gap-2 mt-3">
+                      <Button variant="primary" type="submit">
+                        Registrarse
+                      </Button>
+                    </div>
                     <hr />
                     <span>
                       ¿Ya tienes una cuenta? <Link to="/login"> Inicia sesión</Link>
@@ -140,6 +159,7 @@ const Register = () => {
       <Footer />
     </div>
   );
+ 
 };
 
 export default Register;

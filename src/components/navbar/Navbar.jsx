@@ -5,10 +5,12 @@ import logo from "../../img/UTEST (4).png";
 import "../../styles/slyle-home.css";
 import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
+import { useSelector } from "react-redux";
+import { UserProfile } from "../../user/UserProfile";
 
-const NavBar = () => {
+const NavBar = ({}) => {
 
-
+  const user = useSelector(store => store.login);
 
   return (
     <div>
@@ -31,17 +33,19 @@ const NavBar = () => {
                 </button>
               </Link>
               {" "}
-              <Link to="/register">
+
+              {/* user ? (<Link to="/register">
                 <button className="btn btn-primary">
                   Registro
                 </button>
-              </Link>{" "}
-              <Link to="/login">
+              </Link>) : ("") */
+              }
+              {user ? (<UserProfile  placement="end" name="end" />):(<Link to="/login">
                 <Icon icon="bx:bx-user-circle" height="50" />
-              </Link>{" "}
+              </Link>)}
             </Navbar.Text>
           </Navbar.Collapse>
-        </Navbar>       
+        </Navbar>
       </Container>
     </div>
   );

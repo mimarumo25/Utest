@@ -1,24 +1,26 @@
 import { types } from "../types/types"
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from "@firebase/auth"
 
-export const register = (email, password) => {
+export const register = (name, img, email, password) => {
     return {
         type: types.register,
         payload: {
+            name, 
+            img,
             email,
             password,
         }
     }
 }
 
-export const registerEmailPassword = (email, password, name) =>{
+export const registerEmailPassword = (name, file,email, password) =>{
     return (dispatch) => {
         const auth = getAuth()
-        createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password, file)
         .then(async({user})=>{
-            await updateProfile(auth.currentUser, {displayName: name})
+            await updateProfile(auth.currentUser, {displayName: name, photoURL:file})
 
-            dispatch(register(user.email, user.uid, user.displayName))
+            dispatch(register(user.displayName, user.photoURL, user.email, user.uid))
         })
     }
 }

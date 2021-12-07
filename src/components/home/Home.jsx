@@ -1,10 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { Card, Button } from "react-bootstrap";
 import home from "../../img/home.png";
+import p1 from '../../img/inteligencias.png';
+import p2 from '../../img/vocacional.png';
+import p3 from '../../img/cerebro.png';
+import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const  user  = useSelector(store => store.login);
+  console.log(user);
+
   return (
     <div className="container-lg">
+      <h1>{user.name}</h1>
       <h1 className="text-end">Descubre oportunidades de elegir tu futuro</h1>
       <div className="d-flex">
         <img className="img-home" src={home} alt="home" />
@@ -18,10 +27,74 @@ const Home = () => {
             respuesta incluye las dos alternativas o N.A. (ninguna de las
             anteriores), según sea su preferencia.
           </p>
-          <button className="btn btn-primary comenzar1" href="#login">
+          <a className="btn btn-primary comenzar1" href="#pruebas">
             Pruebas
-          </button>
+          </a>
         </div>
+      </div>
+
+      <div className="d-flex justify-content-between my-5" id="pruebas">
+
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={p1} className="imgCard" />
+          <Card.Body>
+            <Card.Title className="text-center">Test de Inteligencia</Card.Title>
+            <Card.Text>
+              El estudio de la inteligencia humana ha sido uno de los campos más investigados
+              a lo largo del tiempo. Gracias a ello conocemos su funcionamiento, así como una
+              gran variedad de test psicométricos que sirven para medirla.
+            </Card.Text>
+            <Link to="/test">
+              <div className="d-grid gap-2 mt-3">
+                <Button variant="primary" type="submit">
+                  Comenzar
+                </Button>
+                </div>
+              </Link>
+          </Card.Body>
+        </Card>
+
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={p3} className="imgCard" />
+          <Card.Body>
+            <Card.Title className="text-center">Test Vocacional</Card.Title>
+            <Card.Text>
+              Conocer nuestra personalidad es valioso para la toma de decisión de carrera.
+              Nuestros intereses vocacionales y características personales.
+              Es por eso que el test de holland es tan importante en el proceso de orientación vocacional.
+            </Card.Text>
+            
+              <Link to="/test">
+              <div className="d-grid gap-2 mt-3">
+                <Button variant="primary" type="submit">
+                  Comenzar
+                </Button>
+                </div>
+              </Link>
+            
+          </Card.Body>
+        </Card>
+
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={p2} className="imgCard" />
+          <Card.Body>
+            <Card.Title className="text-center">Test Vocacional</Card.Title>
+            <Card.Text>
+              La orientación vocacional es un proceso psicológico que integra
+              lo consciente y lo inconsciente, lo cognitivo y lo afectivo de
+              una persona (González, 2004), y se relaciona con sus contextos
+              sociales, familiares y comunitarios
+            </Card.Text>
+            <Link to="/test">
+              <div className="d-grid gap-2 mt-3">
+                <Button variant="primary" type="submit">
+                  Comenzar
+                </Button>
+                </div>
+              </Link>
+          </Card.Body>
+
+        </Card>
       </div>
     </div>
   );

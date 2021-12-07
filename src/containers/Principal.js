@@ -3,10 +3,10 @@ import Footer from "../components/footer/Footer";
 import Home from "../components/home/Home";
 import NavBar from "../components/navbar/Navbar";
 
-const Principal = () => {
+const Principal = ({isAuthenticated}) => {
   return (
     <div>
-      <NavBar />
+      <NavBar isAuthenticated={isAuthenticated}/>
       <Home />
       <Footer/>
     </div>
