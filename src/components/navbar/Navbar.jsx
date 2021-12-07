@@ -15,8 +15,8 @@ const NavBar = ({}) => {
   return (
     <div>
       <Container >
-        <Navbar>
-          <Navbar.Brand >
+        <Navbar >
+          <Navbar.Brand  className="Cards">
             <Link to="/">
               <div>
                 <img src={logo} alt="logo" className="img-fluid logo" />{" "}
