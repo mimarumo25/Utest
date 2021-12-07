@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Navbar } from "react-bootstrap";
-import logo from "../../img/pru1.png";
+import logo from "../../img/UTEST (4).png";
 import "../../styles/slyle-home.css";
 import { Link } from "react-router-dom";
 import { Icon } from '@iconify/react';
