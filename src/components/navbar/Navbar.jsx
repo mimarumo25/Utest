@@ -8,15 +8,14 @@ import { Icon } from '@iconify/react';
 import { useSelector } from "react-redux";
 import { UserProfile } from "../../user/UserProfile";
 
-const NavBar = ({}) => {
-
+const NavBar = () => {
   const user = useSelector(store => store.login);
 
   return (
     <div>
       <Container >
         <Navbar >
-          <Navbar.Brand  className="Cards">
+          <Navbar.Brand >
             <Link to="/">
               <div>
                 <img src={logo} alt="logo" className="img-fluid logo" />{" "}

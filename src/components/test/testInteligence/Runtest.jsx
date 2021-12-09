@@ -1,61 +1,204 @@
-import React from 'react';
-import { Card, Button, Form, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
+import { FormGroup, Label, Input } from "reactstrap";
 import { Link } from 'react-router-dom';
 import Footer from '../../footer/Footer';
 import NavBar from '../../navbar/Navbar';
+import { acomuladores } from '../../helpers/acomuladores'
+import { useDispatch } from 'react-redux';
+import {Categoria} from '../../../actions/categoriaAction'
 
 
 const Runtest = () => {
+    const questions = [
+
+        {
+            uid: 'BDMFF3jGvFmeELdYYudw',
+            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+            category: 'a'
+        },
+        {
+            uid: 'BLq0XNs8lyQnc7OhvPyS',
+            questions: 'Me gusta construir modelos ( o hacer esculturas)',
+            category: 'c'
+        },
+        {
+            uid: 'EHsv9NgVukkp9h6HJFKq',
+            questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
+            category: 'b'
+        },
+        {
+            uid: 'GULvw5Ym7Oo4MZKhH9fo',
+            questions: 'Disfruto de una buena charla, discurso o sermón.',
+            category: 'd'
+        },
+        {
+            uid: 'BDMFF3jGvFmeELdYYudw',
+            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+            category: 'e'
+        },
+
+        {
+            uid: 'BDMFF3jGvFmeELdYYudw',
+            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+            category: 'f'
+        },
+        {
+            uid: 'BLq0XNs8lyQnc7OhvPyS',
+            questions: 'Me gusta construir modelos ( o hacer esculturas)',
+            category: 'g'
+        }
+    ];
+    const dispatch = useDispatch()
+
+    const [next, setNext] = useState(1);
+    const [statetest, setStatetest] = useState(false);
+    const [radioCheck, setRadioCheck] = useState();
+    const [categorias, setCategorias] = useState([]);
+    const [a, setA] = useState(0);
+    const [b, setB] = useState(0);
+    const [c, setC] = useState(0);
+    const [d, setD] = useState(0);
+    const [e, setE] = useState(0);
+    const [f, setF] = useState(0);
+    const [g, setG] = useState(0); 
+    
+  
+    const handleChangeRadio = e => {
+        setRadioCheck(e.target.value);
+    }
+    
+    const handleSumar = () => {
+        if (next <= questions.length) {
+            valoracion();
+            if (next === questions.length) {
+                setStatetest(true)
+                setCategorias([a,b,c,d,e,f,g ])
+            } else {
+                setNext(next + 1)
+                setRadioCheck();
+                
+            }
+        }
+
+    }
+   
+    const valoracion = () => {
+
+        switch (questions[next - 1].category) {
+            case 'a':
+                setA(a + acomuladores(radioCheck))
+                break;
+            case 'b':
+                 setB( b + acomuladores(radioCheck))
+                break;
+            case 'c':
+                setC(c + acomuladores(radioCheck))
+                break;
+            case 'd':
+                setD(d + acomuladores(radioCheck))
+                break;
+            case 'e':
+                setE(e + acomuladores(radioCheck))
+                break;
+            case 'f':
+                setF(f + acomuladores(radioCheck))
+                break;
+            case 'g':
+                setG(g + acomuladores(radioCheck))
+                break;
+
+            default:
+                break;
+        }
+
+
+    }
+    const handleFinalizar = () => {
+       //setCategorias([a,b,c,d,e,f,g ])
+        
+    console.log(categorias);
+    }
     return (
         <div>
             <NavBar />
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
-                    <Card style={{ width: '50rem' }}>
+                    <Card style={{ width: '50rem' }} className="Cards rounded">
                         <Card.Body>
-
                             <div className="row d-flex justify-content-center">
                                 <div className="col-2 text-center bg-primary m-auto rounded">
-                                    <h1>5</h1>
+                                    <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
-                                <Card.Text className="col-8 ">
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore illum facilis corporis aliquam, ex aliquid rerum necessitatibus distinctio tenetur at, corrupti inventore impedit sunt autem iusto debitis? Doloribus, sequi accusantium.</p>
-                                    <div className="d-flex justify-content-center ">
-                                        <div className="mx-3">
-                                            <fieldset>
-                                                <Form.Group className="mb-3">
-                                                    <Col sm={10}>
-                                                        <Form.Check
-                                                            type="radio"
-                                                            label="first radio"
-                                                            name="formHorizontalRadios"
-                                                            id="formHorizontalRadios1"
-                                                        />
-                                                        <Form.Check
-                                                            type="radio"
-                                                            label="second radio"
-                                                            name="formHorizontalRadios"
-                                                            id="formHorizontalRadios2"
-                                                        />
-                                                        <Form.Check
-                                                            type="radio"
-                                                            label="third radio"
-                                                            name="formHorizontalRadios"
-                                                            id="formHorizontalRadios3"
-                                                        />
-                                                    </Col>
-                                                </Form.Group>
-                                            </fieldset>
-                                        </div>                                        
-                                    </div>
-                                </Card.Text>
+                                <div className="col-8 ">
+                                    <p>{questions[next - 1].questions}</p>
+                                    <FormGroup className="formGroupRadios">
+                                        <FormGroup>
+                                            <Input
+                                                id="radio0"
+                                                type="radio"
+                                                value={0}
+                                                checked={radioCheck == 0 ? true : false}
+                                                onChange={handleChangeRadio}
+                                            />
+                                            <Label for="radio0">
+                                                Cero
+                                            </Label>
+                                        </FormGroup>
 
+                                        <FormGroup>
+                                            <Input
+                                                id="radio1"
+                                                type="radio"
+                                                value={1}
+                                                checked={radioCheck == 1 ? true : false}
+                                                onChange={handleChangeRadio}
+                                            />
+                                            <Label for="radio1">
+                                                Uno
+                                            </Label>
+                                        </FormGroup>
+
+                                        <FormGroup>
+                                            <Input
+                                                id="radio2"
+                                                type="radio"
+                                                value={2}
+                                                checked={radioCheck == 2 ? true : false}
+                                                onChange={handleChangeRadio}
+                                            />
+                                            <Label for="radio2">
+                                                Dos
+                                            </Label>
+                                        </FormGroup>
+
+                                        <FormGroup>
+                                            <Input
+                                                id="radio3"
+                                                type="radio"
+                                                value={3}
+                                                checked={radioCheck == 3 ? true : false}
+                                                onChange={handleChangeRadio}
+                                            />
+                                            <Label for="radio3">
+                                                Tres
+                                            </Label>
+                                        </FormGroup>
+
+                                    </FormGroup>
+
+                                </div>
                             </div>
 
-                            <Link to="/runtest">
-                                <Button variant="primary" >Empezar Test</Button>
+                            <Link to="/runtest" className="d-flex justify-content-end">
+                                {!statetest ? (<Button variant="primary" onClick={handleSumar}>Siguente</Button>) : (
+                                    <Link to="/resultTest">
+                                    <Button variant="primary" onClick={handleFinalizar}>Finalizar</Button>
+                                    </Link>
+                                )}
                             </Link>
                         </Card.Body>
+                        <p>El radio button seleccionado es: <b>{a}</b></p>
                     </Card>
                 </div>
             </div>

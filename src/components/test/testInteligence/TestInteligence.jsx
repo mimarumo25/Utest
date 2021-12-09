@@ -1,12 +1,10 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { Navigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import Footer from '../../footer/Footer';
 import NavBar from '../../navbar/Navbar';
 
 const Testinteligence = ({ test }) => {
-
     return (
         <div>
             <NavBar />
