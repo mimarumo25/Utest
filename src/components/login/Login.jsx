@@ -5,6 +5,12 @@ import { Formik } from 'formik'
 import logo from '../../img/UTEST (4).png'
 import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
+import * as yup from 'yup'
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(6, 'Debe tener minimo 6 caracteres').required()
+})
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -25,18 +31,20 @@ const Login = () => {
           password: ''
         }}
 
-        validate={(valores)=>{
-            let errores ={}
+        
+
+        // validate={()=>{
+        //     let errores ={}
            
-            if(!valores.email){
-                errores.email = 'Por favor ingresa un email'
-            }        
-             return errores;
+        //     if(!valores.email){
+        //         errores.email = 'Por favor ingresa un email'
+        //     }        
+        //      return errores;
 
         //Validación Password
+          validationSchema={schema}
 
-
-         }}
+        //  }}
 
         onSubmit={(valores, { resetForm }) => {
           // setenvioformulario(true)
@@ -81,6 +89,7 @@ const Login = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
+                       {touched.password && errors.password && <div className="error">{errors.password}</div>}
                     </Form.Group>
                     <hr className="mt-4" />
                     <div className="d-flex justify-content-center mt-2">
