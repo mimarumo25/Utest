@@ -9,7 +9,7 @@ import Register from "../components/register/Register";
 import { PrivateRoute } from "./PrivateRoutes";
 import { PublicRoute } from "./PublicRoutes";
 import {DashboardRoutes} from './DashboardRoutes'
-import Principal from "../containers/Principal";
+
 
 const AppRouter = () => {
   const dispatch = useDispatch();

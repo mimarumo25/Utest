@@ -32,6 +32,7 @@ export const UserProfile = ({ ...props }) => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="container">
+                       <p>{user.image}</p>
                         <img src={user.image} alt="Avatar" />
                         <h4>{`Nombre: ${user.name}`}</h4>
                         <Button onClick={handleLogout}>Cerrar Sesion</Button>
