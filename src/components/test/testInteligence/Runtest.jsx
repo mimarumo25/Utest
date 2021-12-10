@@ -1,45 +1,18 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { FormGroup, Label, Input } from "reactstrap";
-import { Link } from 'react-router-dom';
-import Footer from '../../footer/Footer';
-import NavBar from '../../navbar/Navbar';
-import { acomuladores } from '../../helpers/acomuladores'
-import { useDispatch } from 'react-redux';
-import {Categoria} from '../../../actions/categoriaAction'
+import { useEffect, useState } from "react"
+import { Button, Card, FormGroup } from "react-bootstrap"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import { Input, Label } from "reactstrap"
+import { listarPreguntas } from "../../../actions/listarAction"
+import Footer from '../../footer/Footer.jsx'
+import { Categoria } from "../../../actions/categoriaAction"
+import { acomuladores } from "../../helpers/acomuladores"
+import Navbar from '../../navbar/Navbar.jsx'
+
 
 
 const Runtest = () => {
-    const questions = [
-
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'a'
-        },
-        {
-            uid: 'BLq0XNs8lyQnc7OhvPyS',
-            questions: 'Me gusta construir modelos ( o hacer esculturas)',
-            category: 'c'
-        },
-        {
-            uid: 'EHsv9NgVukkp9h6HJFKq',
-            questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
-            category: 'b'
-        },
-        {
-            uid: 'GULvw5Ym7Oo4MZKhH9fo',
-            questions: 'Disfruto de una buena charla, discurso o sermón.',
-            category: 'd'
-        },
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'e'
-        }
-    ];
-    const dispatch = useDispatch()
-
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
@@ -51,7 +24,64 @@ const Runtest = () => {
     const [d, setD] = useState(0);
     const [e, setE] = useState(0);
     const [f, setF] = useState(0);
-    const [g, setG] = useState(0); 
+    const [g, setG] = useState(0);
+
+    const dispatch = useDispatch()
+    const [questions] = useSelector(state => state.listar.preguntas)
+
+   useEffect(() => {    
+    dispatch(listarPreguntas())
+   }, [])
+
+   if(!questions){
+
+       return  <div className="container"><h3>esperando...</h3></div>       
+       
+   }else{
+
+   
+
+    // const questions = [
+
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'a'
+    //     },
+    //     {
+    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
+    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
+    //         category: 'c'
+    //     },
+    //     {
+    //         uid: 'EHsv9NgVukkp9h6HJFKq',
+    //         questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
+    //         category: 'b'
+    //     },
+    //     {
+    //         uid: 'GULvw5Ym7Oo4MZKhH9fo',
+    //         questions: 'Disfruto de una buena charla, discurso o sermón.',
+    //         category: 'd'
+    //     },
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'e'
+    //     },
+
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'f'
+    //     },
+    //     {
+    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
+    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
+    //         category: 'g'
+    //     }
+    // ];
+
+     
     
   
     const handleChangeRadio = e => {
@@ -113,7 +143,7 @@ const Runtest = () => {
     }
     return (
         <div>
-            <NavBar />
+            <Navbar />
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
                     <Card style={{ width: '50rem' }} className="Cards rounded">
@@ -199,7 +229,7 @@ const Runtest = () => {
                                 )
                                 }  
                         </Card.Body>
-                        <p>El radio button seleccionado es: <b>{a}</b></p>
+                      
                     </Card>
                 </div>
             </div>
@@ -207,5 +237,5 @@ const Runtest = () => {
         </div>
     );
 }
-
+}
 export default Runtest;

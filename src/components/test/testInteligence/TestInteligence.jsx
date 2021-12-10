@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import Footer from '../../footer/Footer';
 import NavBar from '../../navbar/Navbar';
 
-const Testinteligence = ({ test }) => {
+const Testinteligence = () => {
+
+    
+
     return (
         <div>
             <NavBar />
