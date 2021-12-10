@@ -36,17 +36,6 @@ const Runtest = () => {
             uid: 'BDMFF3jGvFmeELdYYudw',
             questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
             category: 'e'
-        },
-
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'f'
-        },
-        {
-            uid: 'BLq0XNs8lyQnc7OhvPyS',
-            questions: 'Me gusta construir modelos ( o hacer esculturas)',
-            category: 'g'
         }
     ];
     const dispatch = useDispatch()
