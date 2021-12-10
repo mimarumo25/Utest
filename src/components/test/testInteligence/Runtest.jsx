@@ -18,7 +18,7 @@ const Runtest = () => {
    }, [])
 
    if(!datos){
-       return  <h3>Esperando...</h3>      
+       return  <h3>esperando...</h3>      
        
    }else{
 
