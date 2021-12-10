@@ -11,8 +11,8 @@ export const DashboardRoutes = () => {
     <div>
       <Routes>
         <Route exact path="/*" element={<Principal/>} />
-        <Route exact path="/test" element={<Testinteligence />} />
-        <Route exact path="/runtest" element={<Runtest />} />
+        <Route exact path="/test/:test" element={<Testinteligence />} />
+        <Route exact path="/runtest/:test" element={<Runtest />} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/resultTest" element={<Resultados/>} />
         

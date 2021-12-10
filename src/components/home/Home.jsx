@@ -42,7 +42,7 @@ const Home = () => {
               a lo largo del tiempo. Gracias a ello conocemos su funcionamiento, así como una
               gran variedad de test psicométricos que sirven para medirla.
             </Card.Text>
-            <Link to="/test">
+            <Link to={`/test/testinteligencia`}>
               <div className="d-grid gap-2 mt-3">
                 <Button variant="primary" type="submit">
                   Comenzar
@@ -62,7 +62,7 @@ const Home = () => {
               Es por eso que el test de holland es tan importante en el proceso de orientación vocacional.
             </Card.Text>
             
-              <Link to="/test">
+              <Link to="/test/testvocacional">
               <div className="d-grid gap-2 mt-3">
                 <Button variant="primary" type="submit">
                   Comenzar
