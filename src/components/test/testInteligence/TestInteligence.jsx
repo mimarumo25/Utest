@@ -7,6 +7,8 @@ import NavBar from '../../navbar/Navbar';
 
 const Testinteligence = ({ test }) => {
 
+    
+
     return (
         <div>
             <NavBar />

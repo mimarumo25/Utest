@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Button, Form, Col } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { listarPreguntas } from '../../../actions/listarAction';
 import Footer from '../../footer/Footer';
 import NavBar from '../../navbar/Navbar';
 
 
 const Runtest = () => {
+
+    const dispatch = useDispatch()
+    const [datos] = useSelector(state => state.listar.preguntas)
+    console.log(datos)
+
+   useEffect(() => {
+    dispatch(listarPreguntas())
+   }, [])
+
+   if(!datos){
+       return  <h3>Esperando...</h3>      
+       
+   }else{
+
+   
+
     return (
         <div>
             <NavBar />
@@ -63,5 +81,5 @@ const Runtest = () => {
         </div>
     );
 }
-
+}
 export default Runtest;
