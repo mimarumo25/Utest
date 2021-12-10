@@ -53,6 +53,7 @@ const Runtest = () => {
 
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
+    const [guardarTest, setGuardarTest] = useState(true);
     const [radioCheck, setRadioCheck] = useState();
     const [categorias, setCategorias] = useState([]);
     const [a, setA] = useState(0);
@@ -73,7 +74,7 @@ const Runtest = () => {
             valoracion();
             if (next === questions.length) {
                 setStatetest(true)
-                setCategorias([a,b,c,d,e,f,g ])
+                
             } else {
                 setNext(next + 1)
                 setRadioCheck();
@@ -115,9 +116,11 @@ const Runtest = () => {
 
     }
     const handleFinalizar = () => {
-       //setCategorias([a,b,c,d,e,f,g ])
-        
-    console.log(categorias);
+        setCategorias([a,b,c,d,e,f,g ])
+        setGuardarTest(false)        
+    }
+   const handleVerResult = () =>{
+   dispatch(Categoria(categorias))
     }
     return (
         <div>
@@ -190,13 +193,22 @@ const Runtest = () => {
                                 </div>
                             </div>
 
-                            <Link to="/runtest" className="d-flex justify-content-end">
-                                {!statetest ? (<Button variant="primary" onClick={handleSumar}>Siguente</Button>) : (
-                                    <Link to="/resultTest">
+                            {
+                                guardarTest?
+                                (!statetest ? 
+                                (<div className="d-flex justify-content-end">
+                                    <Button variant="primary" onClick={handleSumar}>Siguente</Button>
+                                    </div>) : (
+                                   <div className="d-flex justify-content-end">
                                     <Button variant="primary" onClick={handleFinalizar}>Finalizar</Button>
-                                    </Link>
-                                )}
-                            </Link>
+                                    </div>
+                                    ))
+                                :(
+                                    <Link to="/resultTest">
+                                    <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
+                                    </Link> 
+                                )
+                                }  
                         </Card.Body>
                         <p>El radio button seleccionado es: <b>{a}</b></p>
                     </Card>
