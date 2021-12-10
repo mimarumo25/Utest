@@ -3,6 +3,7 @@ import { facebook, google } from "../firebase/firebase"
 import { types } from "../types/types"
 
 export const login = (id, displayname, image) =>{
+    
     return {
         type: types.login,
         payload:{
@@ -10,7 +11,9 @@ export const login = (id, displayname, image) =>{
             displayname,
             image
         }
+        
     }
+    
 }
 
 export const loginGoogle = () =>{
@@ -18,7 +21,9 @@ export const loginGoogle = () =>{
         const auth = getAuth()
         signInWithPopup(auth,google)
         .then(({user})=>{
-            
+
+
+            console.log(user.photoURL)
             dispatch(login(user.uid, user.displayName, user.photoURL))
         })
         .catch(e=>{

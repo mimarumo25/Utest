@@ -14,7 +14,6 @@ export const listarPreguntas = () => {
             questions.push({
                 ...doc.data()
             })
-            console.log(questions)
         });
         dispatch(listSync(questions));
     }

@@ -14,6 +14,7 @@ export const UserProfile = ({ ...props }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const user = useSelector(store => store.login);
+    console.log(user)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -32,10 +33,20 @@ export const UserProfile = ({ ...props }) => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="container">
-                       <p>{user.image}</p>
-                        <img src={user.image} alt="Avatar" />
-                        <h4>{`Nombre: ${user.name}`}</h4>
-                        <Button onClick={handleLogout}>Cerrar Sesion</Button>
+                       <div className='imgprofile'>
+                       <img src={user.image} alt="Avatar" />
+                       
+                       </div>
+                       <div className='usuarionombre'>
+                       <h4>{`${user.name}`}</h4>
+                       </div>
+                       
+                        
+                        <div className="cerrarsesion" >
+
+                        <Button variant="dark" onClick={handleLogout}>Cerrar Sesion</Button>
+
+                        </div>
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>
