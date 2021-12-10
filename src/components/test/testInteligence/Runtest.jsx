@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, Card, FormGroup, Navbar } from "react-bootstrap"
+import { Button, Card, FormGroup } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
@@ -8,6 +8,7 @@ import { listarPreguntas } from "../../../actions/listarAction"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
 import { acomuladores } from "../../helpers/acomuladores"
+import Navbar from '../../navbar/Navbar.jsx'
 
 
 
@@ -26,59 +27,58 @@ const Runtest = () => {
     const [g, setG] = useState(0);
 
     const dispatch = useDispatch()
-    const [datos] = useSelector(state => state.listar.preguntas)
-    console.log(datos)
+    const [questions] = useSelector(state => state.listar.preguntas)
 
    useEffect(() => {    
     dispatch(listarPreguntas())
    }, [])
 
-   if(!datos){
+   if(!questions){
        return  <h3>esperando...</h3>      
        
    }else{
 
    
 
-    const questions = [
+    // const questions = [
 
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'a'
-        },
-        {
-            uid: 'BLq0XNs8lyQnc7OhvPyS',
-            questions: 'Me gusta construir modelos ( o hacer esculturas)',
-            category: 'c'
-        },
-        {
-            uid: 'EHsv9NgVukkp9h6HJFKq',
-            questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
-            category: 'b'
-        },
-        {
-            uid: 'GULvw5Ym7Oo4MZKhH9fo',
-            questions: 'Disfruto de una buena charla, discurso o sermón.',
-            category: 'd'
-        },
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'e'
-        },
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'a'
+    //     },
+    //     {
+    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
+    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
+    //         category: 'c'
+    //     },
+    //     {
+    //         uid: 'EHsv9NgVukkp9h6HJFKq',
+    //         questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
+    //         category: 'b'
+    //     },
+    //     {
+    //         uid: 'GULvw5Ym7Oo4MZKhH9fo',
+    //         questions: 'Disfruto de una buena charla, discurso o sermón.',
+    //         category: 'd'
+    //     },
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'e'
+    //     },
 
-        {
-            uid: 'BDMFF3jGvFmeELdYYudw',
-            questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-            category: 'f'
-        },
-        {
-            uid: 'BLq0XNs8lyQnc7OhvPyS',
-            questions: 'Me gusta construir modelos ( o hacer esculturas)',
-            category: 'g'
-        }
-    ];
+    //     {
+    //         uid: 'BDMFF3jGvFmeELdYYudw',
+    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
+    //         category: 'f'
+    //     },
+    //     {
+    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
+    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
+    //         category: 'g'
+    //     }
+    // ];
 
      
     
