@@ -26,12 +26,13 @@ const TestVocacional = () => {
  
 
     const dispatch = useDispatch()
-    const [questions] = useSelector(state => state.listar.preguntas)
+    const [questions] = useSelector(state => state.listarVocacional.preguntas)
 
    useEffect(() => {
+    
     dispatch(listarPreguntasTestVocacional())    
-   }, 
-   [dispatch])
+  }, 
+[dispatch])
 
    if(!questions){
        return  <h3>esperando...</h3>      
@@ -91,8 +92,10 @@ const TestVocacional = () => {
    dispatch(Categoria(categorias))
     }
     return (
+        
         <div>
             <Navbar />
+            
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
                     <Card style={{ width: '50rem' }} className="Cards rounded">
@@ -146,7 +149,7 @@ const TestVocacional = () => {
                                     </div>
                                     ))
                                 :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultTest">
+                                    <Link to="/resultadosVocacional">
                                     <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
                                     </Link> 
                                     </div>

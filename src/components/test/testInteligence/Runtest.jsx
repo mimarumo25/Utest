@@ -35,26 +35,15 @@ const Runtest = () => {
     const [questions] = useSelector(state => state.listar.preguntas)
 
    useEffect(() => {
-       if(test === "testinteligencia")   {
-
-           dispatch(listarPreguntas())
-           
-    } else if(test === "testvocacional"){
-        dispatch(listarPreguntasTestVocacional())       
-        
-       }else if(test === "testpersonalidad"){
-        dispatch(listarTestPersonalidad())
-       }  
-    
+    dispatch(listarPreguntas())
    }, [dispatch])
 
    if(!questions){
-       return  <h3>esperando...</h3>      
-       
+       return (
+       <h3>esperando...</h3>      
+       )
    }else{
      
-    
-  
     const handleChangeRadio = e => {
         setRadioCheck(e.target.value);
     }

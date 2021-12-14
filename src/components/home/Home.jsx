@@ -57,9 +57,10 @@ const Home = () => {
           <Card.Body>
             <Card.Title className="text-center">Test Vocacional</Card.Title>
             <Card.Text>
-              Conocer nuestra personalidad es valioso para la toma de decisión de carrera.
-              Nuestros intereses vocacionales y características personales.
-              Es por eso que el test de holland es tan importante en el proceso de orientación vocacional.
+            La orientación vocacional es un proceso psicológico que integra
+              lo consciente y lo inconsciente, lo cognitivo y lo afectivo de
+              una persona (González, 2004), y se relaciona con sus contextos
+              sociales, familiares y comunitarios
             </Card.Text>
             
               <Link to="/test/testvocacional">
@@ -78,10 +79,10 @@ const Home = () => {
           <Card.Body>
             <Card.Title className="text-center">Test de Personalidad</Card.Title>
             <Card.Text>
-              La orientación vocacional es un proceso psicológico que integra
-              lo consciente y lo inconsciente, lo cognitivo y lo afectivo de
-              una persona (González, 2004), y se relaciona con sus contextos
-              sociales, familiares y comunitarios
+              Conocer nuestra personalidad es valioso para la toma de decisión de carrera.
+              Nuestros intereses vocacionales y características personales.
+              Es por eso que el test de holland es tan importante en el proceso de orientación vocacional.
+ 
             </Card.Text>
             <Link to="/test/testpersonalidad">
               <div className="d-grid gap-2 mt-3">

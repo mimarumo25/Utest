@@ -27,7 +27,7 @@ const Testinteligence = () => {
                   2. Después de realizar el ejercicio, completa el cuadro
                   resumen
                 </Card.Text>
-                <Link to="/runtest/testinteligencia">
+                <Link to="/testinteligencia">
                   <Button variant="primary">Empezar Test</Button>
                 </Link>
               </Card.Body>
@@ -39,15 +39,18 @@ const Testinteligence = () => {
     );
   } else if (test === "testvocacional") {
     return (
+
       <div>
+        
         <NavBar />
+        
         <div className="container-lg">
           <div className="d-flex justify-content-center">
             <Card style={{ width: "50rem" }}>
               <Card.Body>
                 <Card.Title>TEST VOCACIONAL</Card.Title>
                 <Card.Text>
-                  <b>Instrucciones Generales </b>“Test de Intereses
+                  <b>Instrucciones Vocacional </b>“Test de Intereses
                   Profesionales De Gardent Holland”.
                   <br />
                   Este test te permitirá identificar los talentos que facilitan

@@ -21,7 +21,7 @@ const TestPersonalidad = () => {
     const [radioCheck, setRadioCheck] = useState();
     const [categorias, setCategorias] = useState([]);
     const [colerico, setColerico] = useState(0);
-    const [apacionado, setApacionado] = useState(0);
+    const [apasionado, setApacionado] = useState(0);
     const [sanguineo, setSanguineo] = useState(0);
     const [flematico, setFlematico] = useState(0);
     const [nervioso, setNervioso] = useState(0);
@@ -30,10 +30,12 @@ const TestPersonalidad = () => {
     const [apatico, setApatico] = useState(0);
 
     const dispatch = useDispatch()
-    const [questions] = useSelector(state => state.listar.preguntas)
-
+    const [questions] = useSelector(state => state.listarPersonalidad.preguntas)
+console.log(questions)
    useEffect(() => {
-    dispatch(listarTestPersonalidad())   
+    
+    dispatch(listarTestPersonalidad()) 
+
    }, 
    [dispatch])
 
@@ -70,7 +72,7 @@ const TestPersonalidad = () => {
                 setColerico(colerico + acomuladoresPersonalidad(radioCheck))
                 break;
             case 'Apasionado':
-                 setApacionado( apacionado + acomuladoresPersonalidad(radioCheck))
+                 setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                 break;
             case 'Sanguíneo':
                 setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
@@ -90,14 +92,78 @@ const TestPersonalidad = () => {
             case 'Apático':
                 setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                 break;
+            
+            case 'NerviosoSentimentalAmorfo':
+                setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                break;
+                
+                case 'SanguineoAmorfoFlematico':
+                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                    break;
 
+                case 'FlematicoApaticoSentimental':
+                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    break;
+    
+                case 'ApasionadoFlematicoSentimental':
+                setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                break;      
+
+                case 'ApasionadoSentimentalAmorfo':
+                    setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    break;       
+
+                case 'ApaticoAmorfo':
+                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                case 'ColericoSanguineo':
+                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'ColericoNervioso':
+                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                        setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    break; 
+                    
+                    case 'NerviosoSentimental':
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'SentimentalFlematico':
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    break;  
+
+                    case 'ApaticoSentimental':
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'ColericoApasionado':
+                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                        setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                    break; 
             default:
                 break;
         }
 
     }
     const handleFinalizar = () => {
-        setCategorias([colerico,apacionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico])
+        setCategorias([colerico,apasionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico])
         setGuardarTest(false)        
     }
    const handleVerResult = () =>{
@@ -106,6 +172,7 @@ const TestPersonalidad = () => {
     return (
         <div>
             <Navbar />
+           
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
                     <Card style={{ width: '50rem' }} className="Cards rounded">
@@ -115,7 +182,7 @@ const TestPersonalidad = () => {
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
-                                    <p>{questions[next - 1].questions}</p>
+                                    <p>{questions[next - 1].question}</p>
                                     <FormGroup className="formGroupRadios">
                                         <FormGroup>
                                             <Input
@@ -159,7 +226,7 @@ const TestPersonalidad = () => {
                                     </div>
                                     ))
                                 :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultTest">
+                                    <Link to="/resultadosPersonalidad">
                                     <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
                                     </Link> 
                                     </div>

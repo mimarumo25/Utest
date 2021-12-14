@@ -3,6 +3,8 @@ export const types = {
     logout:'[logout] logout',
     register: '[Auth]register',
     listar: '[listar]listar',
+    listarVocacional: '[listarVocacional]listar',
+    listarPersonalidad: '[listarPersonalidad]listar',
     categoria:'[Caterorias]categoria'
 
 }
