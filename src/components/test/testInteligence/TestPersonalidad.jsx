@@ -2,51 +2,40 @@ import { useEffect, useState } from "react"
 import { Button, Card, FormGroup } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Input, Label } from "reactstrap"
-import { listarPreguntas } from "../../../actions/listarAction"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
-import { acomuladores } from "../../helpers/acomuladores"
+import { acomuladoresPersonalidad, acomuladoresVocacional } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
-import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction"
 import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 
 
 
-const Runtest = () => {
+const TestPersonalidad = () => {
 
-    const {test} =  useParams()
     
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
     const [radioCheck, setRadioCheck] = useState();
     const [categorias, setCategorias] = useState([]);
-    const [a, setA] = useState(0);
-    const [b, setB] = useState(0);
-    const [c, setC] = useState(0);
-    const [d, setD] = useState(0);
-    const [e, setE] = useState(0);
-    const [f, setF] = useState(0);
-    const [g, setG] = useState(0);
+    const [colerico, setColerico] = useState(0);
+    const [apacionado, setApacionado] = useState(0);
+    const [sanguineo, setSanguineo] = useState(0);
+    const [flematico, setFlematico] = useState(0);
+    const [nervioso, setNervioso] = useState(0);
+    const [sentimental, setSentimental] = useState(0);
+    const [amorfo, setAmorfo] = useState(0);
+    const [apatico, setApatico] = useState(0);
 
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listar.preguntas)
 
    useEffect(() => {
-       if(test === "testinteligencia")   {
-
-           dispatch(listarPreguntas())
-           
-    } else if(test === "testvocacional"){
-        dispatch(listarPreguntasTestVocacional())       
-        
-       }else if(test === "testpersonalidad"){
-        dispatch(listarTestPersonalidad())
-       }  
-    
-   }, [dispatch])
+    dispatch(listarTestPersonalidad())   
+   }, 
+   [dispatch])
 
    if(!questions){
        return  <h3>esperando...</h3>      
@@ -77,36 +66,38 @@ const Runtest = () => {
     const valoracion = () => {
 
         switch (questions[next - 1].category) {
-            case 'a':
-                setA(a + acomuladores(radioCheck))
+            case 'Colérico':
+                setColerico(colerico + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'b':
-                 setB( b + acomuladores(radioCheck))
+            case 'Apasionado':
+                 setApacionado( apacionado + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'c':
-                setC(c + acomuladores(radioCheck))
+            case 'Sanguíneo':
+                setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'd':
-                setD(d + acomuladores(radioCheck))
+            case 'Flemático':
+                setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'e':
-                setE(e + acomuladores(radioCheck))
+            case 'Nervioso':
+                setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'f':
-                setF(f + acomuladores(radioCheck))
+            case 'Sentimental':
+                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'g':
-                setG(g + acomuladores(radioCheck))
+            case 'Amorfo':
+                setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                break;
+            case 'Apático':
+                setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                 break;
 
             default:
                 break;
         }
 
-
     }
     const handleFinalizar = () => {
-        setCategorias([a,b,c,d,e,f,g ])
+        setCategorias([colerico,apacionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico])
         setGuardarTest(false)        
     }
    const handleVerResult = () =>{
@@ -135,7 +126,7 @@ const Runtest = () => {
                                                 onChange={handleChangeRadio}
                                             />
                                             <Label for="radio0">
-                                                Cero
+                                                Si
                                             </Label>
                                         </FormGroup>
 
@@ -148,33 +139,7 @@ const Runtest = () => {
                                                 onChange={handleChangeRadio}
                                             />
                                             <Label for="radio1">
-                                                Uno
-                                            </Label>
-                                        </FormGroup>
-
-                                        <FormGroup>
-                                            <Input
-                                                id="radio2"
-                                                type="radio"
-                                                value={2}
-                                                checked={radioCheck == 2 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label for="radio2">
-                                                Dos
-                                            </Label>
-                                        </FormGroup>
-
-                                        <FormGroup>
-                                            <Input
-                                                id="radio3"
-                                                type="radio"
-                                                value={3}
-                                                checked={radioCheck == 3 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label for="radio3">
-                                                Tres
+                                                No 
                                             </Label>
                                         </FormGroup>
 
@@ -209,4 +174,4 @@ const Runtest = () => {
     );
 }
 }
-export default Runtest;
+export default TestPersonalidad;

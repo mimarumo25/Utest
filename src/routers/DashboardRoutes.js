@@ -4,6 +4,8 @@ import Principal from '../containers/Principal'
 import Testinteligence from '../components/test/testInteligence/TestInteligence.jsx'
 import Runtest from "../components/test/testInteligence/Runtest";
 import Resultados from "../components/test/Resultados";
+import TestVocacional from "../components/test/testInteligence/TestPersonalidad";
+import TestPersonalidad from "../components/test/testInteligence/TestPersonalidad";
 
 export const DashboardRoutes = () => {
   
@@ -13,6 +15,8 @@ export const DashboardRoutes = () => {
         <Route exact path="/*" element={<Principal/>} />
         <Route exact path="/test/:test" element={<Testinteligence />} />
         <Route exact path="/runtest/:test" element={<Runtest />} />
+        <Route exact path="/testvocacional" element={<TestVocacional />} />
+        <Route exact path="/testPersonalidad" element={<TestPersonalidad />} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/resultTest" element={<Resultados/>} />
         
