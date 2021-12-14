@@ -92,7 +92,7 @@ const TestPersonalidad = () => {
                 break;
 
             default:
-                break;
+                break ;
         }
 
     }
