@@ -4,10 +4,8 @@ import Footer from "../footer/Footer.jsx";
 import { useSelector } from "react-redux";
 
 export default function Resultados() {
-  const { categoria } = useSelector((store) => store.categoria);
-  console.log(categoria[0][1]);
-
-  return (
+    const {categoria} = useSelector(store => store.categoria)     
+   return (
     <div>
       <NavBar />
       <div className="container">
@@ -24,7 +22,7 @@ export default function Resultados() {
                   aria-valuenow="10"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][0]}%`}</div>
               </div>
             </div>
 
@@ -38,7 +36,7 @@ export default function Resultados() {
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][1]}%`}</div>
               </div>
             </div>
 
@@ -52,7 +50,7 @@ export default function Resultados() {
                   aria-valuenow="50"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][2]}%`}</div>
               </div>
             </div>
 
@@ -66,7 +64,7 @@ export default function Resultados() {
                   aria-valuenow="75"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][3]}%`}</div>
               </div>
             </div>
 
@@ -80,7 +78,7 @@ export default function Resultados() {
                   aria-valuenow="100"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][4]}%`}</div>
               </div>
             </div>
 
@@ -94,7 +92,7 @@ export default function Resultados() {
                   aria-valuenow="100"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][5]}%`}</div>
               </div>
             </div>
 
@@ -109,7 +107,7 @@ export default function Resultados() {
                   aria-valuenow="100"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                ></div>
+                >{`${categoria[0][6]}%`}</div>
               </div>
             </div>
           </div>

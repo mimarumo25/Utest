@@ -27,9 +27,9 @@ const NavBar = () => {
           <Navbar.Collapse className="justify-content-end respose">
             <Navbar.Text>
               <Link to="/about">
-                <button className="btn btn-primary ">
+                {/* <button className="btn btn-primary ">
                   Acerca de
-                </button>
+                </button> */}
               </Link>
               {" "}
 
