@@ -76,14 +76,14 @@ const Home = () => {
         <Card style={{ width: '18rem' }} className="Cards">
           <Card.Img variant="top" src={p2} className="imgCard" />
           <Card.Body>
-            <Card.Title className="text-center">Test Vocacional</Card.Title>
+            <Card.Title className="text-center">Test de Personalidad</Card.Title>
             <Card.Text>
               La orientación vocacional es un proceso psicológico que integra
               lo consciente y lo inconsciente, lo cognitivo y lo afectivo de
               una persona (González, 2004), y se relaciona con sus contextos
               sociales, familiares y comunitarios
             </Card.Text>
-            <Link to="/test">
+            <Link to="/test/testpersonalidad">
               <div className="d-grid gap-2 mt-3">
                 <Button variant="primary" type="submit">
                   Comenzar

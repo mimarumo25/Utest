@@ -10,6 +10,7 @@ import { Categoria } from "../../../actions/categoriaAction"
 import { acomuladores } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
 import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction"
+import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 
 
 
@@ -40,9 +41,11 @@ const Runtest = () => {
     } else if(test === "testvocacional"){
         dispatch(listarPreguntasTestVocacional())       
         
-       }
+       }else if(test === "testpersonalidad"){
+        dispatch(listarTestPersonalidad())
+       }  
     
-   }, [])
+   }, [dispatch])
 
    if(!questions){
        return  <h3>esperando...</h3>      

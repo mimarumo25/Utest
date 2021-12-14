@@ -71,6 +71,41 @@ const Testinteligence = () => {
         <Footer />
       </div>
     );
+  }else if (test === "testpersonalidad"){
+    return (
+        <div>
+    <NavBar />
+    <div className="container-lg">
+      <div className="d-flex justify-content-center">
+        <Card style={{ width: "50rem" }}>
+          <Card.Body>
+            <Card.Title>TEST VOCACIONAL</Card.Title>
+            <Card.Text>
+              <b>Instrucciones Generales </b>“Test de Intereses
+              Profesionales De Gardent Holland”.
+              <br />
+              Este test te permitirá identificar los talentos que facilitan
+              tu aprendizaje.<br /> A continuación aparecen unos criterios
+              relacionados a las 8 inteligencias múltiples de Howard
+              Gardner.<br /> No hay límite de tiempo para contestar el test. No te
+              ocupará más de 15 minutos. No hay respuestas correctas o
+              erróneas. <br />Será útil en la medida que seas sincero/a en tus
+              respuestas. <br />Indica hasta qué punto coincides con lo expresado
+              Por favor contesta a todos los items. El test es confidencial.
+              <br />
+             
+            </Card.Text>
+            <Link to="/runtest/testpersonalidad">
+              <Button variant="primary">Empezar Test</Button>
+            </Link>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+    <Footer />
+  </div>
+    )
+
   }
 };
 
