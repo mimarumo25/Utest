@@ -2,17 +2,22 @@ import { useEffect, useState } from "react"
 import { Button, Card, FormGroup } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { Input, Label } from "reactstrap"
 import { listarPreguntas } from "../../../actions/listarAction"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
 import { acomuladores } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
+import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction"
+import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 
 
 
 const Runtest = () => {
+
+    const {test} =  useParams()
+    
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
@@ -29,58 +34,24 @@ const Runtest = () => {
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listar.preguntas)
 
-   useEffect(() => {    
-    dispatch(listarPreguntas())
-   }, [])
+   useEffect(() => {
+       if(test === "testinteligencia")   {
+
+           dispatch(listarPreguntas())
+    } else if(test === "testvocacional"){
+        dispatch(listarPreguntasTestVocacional())       
+        
+       }else if(test === "testpersonalidad"){
+        dispatch(listarTestPersonalidad())
+       }  
+    
+   }, [dispatch])
 
    if(!questions){
 
        return  <div className="container"><h3>esperando...</h3></div>       
        
    }else{
-
-   
-
-    // const questions = [
-
-    //     {
-    //         uid: 'BDMFF3jGvFmeELdYYudw',
-    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-    //         category: 'a'
-    //     },
-    //     {
-    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
-    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
-    //         category: 'c'
-    //     },
-    //     {
-    //         uid: 'EHsv9NgVukkp9h6HJFKq',
-    //         questions: 'Me doy cuenta bastante bien de lo que otros piensan de mí.',
-    //         category: 'b'
-    //     },
-    //     {
-    //         uid: 'GULvw5Ym7Oo4MZKhH9fo',
-    //         questions: 'Disfruto de una buena charla, discurso o sermón.',
-    //         category: 'd'
-    //     },
-    //     {
-    //         uid: 'BDMFF3jGvFmeELdYYudw',
-    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-    //         category: 'e'
-    //     },
-
-    //     {
-    //         uid: 'BDMFF3jGvFmeELdYYudw',
-    //         questions: 'Me mantengo "en contacto" con mis estados de ánimo. No me cuesta identificarlos.',
-    //         category: 'f'
-    //     },
-    //     {
-    //         uid: 'BLq0XNs8lyQnc7OhvPyS',
-    //         questions: 'Me gusta construir modelos ( o hacer esculturas)',
-    //         category: 'g'
-    //     }
-    // ];
-
      
     
   
@@ -149,7 +120,7 @@ const Runtest = () => {
                     <Card style={{ width: '50rem' }} className="Cards rounded">
                         <Card.Body>
                             <div className="row d-flex justify-content-center">
-                                <div className="col-2 text-center bg-primary m-auto rounded">
+                                <div className="col-2 text-center bg-primary m-auto rounded w-25">
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
@@ -222,14 +193,18 @@ const Runtest = () => {
                                     <Button variant="primary" onClick={handleFinalizar}>Finalizar</Button>
                                     </div>
                                     ))
-                                :(
+                                :(<div className="d-flex justify-content-end">
                                     <Link to="/resultTest">
                                     <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
                                     </Link> 
+                                    </div>
                                 )
                                 }  
                         </Card.Body>
+<<<<<<< HEAD
                       
+=======
+>>>>>>> bbe0d46765dde9444f5f26978a2edef64c49bc31
                     </Card>
                 </div>
             </div>

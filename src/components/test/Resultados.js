@@ -117,4 +117,8 @@ export default function Resultados() {
       <Footer />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bbe0d46765dde9444f5f26978a2edef64c49bc31
