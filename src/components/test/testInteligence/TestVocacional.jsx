@@ -111,7 +111,7 @@ const TestVocacional = () => {
                                             <Input
                                                 id="radio0"
                                                 type="radio"
-                                                value={0}
+                                                value={1}
                                                 checked={radioCheck == 0 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
@@ -124,7 +124,7 @@ const TestVocacional = () => {
                                             <Input
                                                 id="radio1"
                                                 type="radio"
-                                                value={1}
+                                                value={0}
                                                 checked={radioCheck == 1 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
