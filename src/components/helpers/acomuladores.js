@@ -33,6 +33,7 @@ export const acomuladoresPersonalidad = (dato) => {
   switch (dato) {
     case "0":
       acomu = 10;
+    
       break;
     default:
       break;

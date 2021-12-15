@@ -72,6 +72,8 @@ const TestPersonalidad = () => {
     }
    
     const valoracion = () => {
+        console.log(questions[next - 1].category)
+        console.log(colerico,apasionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico )
 
         switch (questions[next - 1].category) {
             case 'Colerico':
@@ -108,7 +110,7 @@ const TestPersonalidad = () => {
                 case 'SanguineoAmorfoFlematico':
                     setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
                     setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
-                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     break;
 
                 case 'FlematicoApaticoSentimental':
@@ -121,7 +123,15 @@ const TestPersonalidad = () => {
                 setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                 setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                 setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                break;      
+                break;    
+
+                case 'ColericoApasionadoNervioso':
+                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                    break;  
+                
+
 
                 case 'ApasionadoSentimentalAmorfo':
                     setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
@@ -163,10 +173,34 @@ const TestPersonalidad = () => {
                         setColerico(colerico + acomuladoresPersonalidad(radioCheck))
                         setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                     break; 
+
+                    case 'FlematicoApatico':
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'SentimentalFlematico ':
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'ApaticoFlematico':
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+                    case 'FlematicoApatico':
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break; 
+
+
+
+
             default:
                 break;
         }
-
+        
     }
     const handleFinalizar = () => {
         setCategorias([colerico,apasionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico])
