@@ -9,14 +9,14 @@ import { Categoria } from "../../../actions/categoriaAction"
 import { acomuladoresPersonalidad, acomuladoresVocacional } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
 import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
+import { Field, Form, Formik } from "formik"
 
 const TestPersonalidad = () => {
 
-    
+
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
-    const [radioCheck, setRadioCheck] = useState();
     const [categorias, setCategorias] = useState([]);
     const [colerico, setColerico] = useState(0);
     const [apasionado, setApacionado] = useState(0);
@@ -30,79 +30,61 @@ const TestPersonalidad = () => {
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listarPersonalidad.preguntas)
 
-   useEffect(() => {
-    
-    dispatch(listarTestPersonalidad()) 
+    useEffect(() => {
 
-   }, 
-   [dispatch])
+        dispatch(listarTestPersonalidad())
 
-   if(!questions){
-    return(  
-       <>
-        <Navbar />
-        
-        <h3>esperando...</h3>   
-       </>)
-         
-       
-   }else{
-     
-    
-  
-    const handleChangeRadio = e => {
-        setRadioCheck(e.target.value);
-    }
-    
-    const handleSumar = () => {
-        if (next <= questions.length) {
-            valoracion();
-            if (next === questions.length) {
-                setStatetest(true)
-                
-            } else {
-                setNext(next + 1)
-                setRadioCheck();
-                
-            }
-        }
+    },
+        [dispatch])
 
-    }
-   
-    const valoracion = () => {
+    if (!questions) {
+        return (
+            <>
+                <Navbar />
 
-        switch (questions[next - 1].category) {
-            case 'Colerico':
-                setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Apasionado':
-                 setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Sanguineo':
-                setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Flematico':
-                setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Nervioso':
-                setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Sentimental':
-                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Amorfo':
-                setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                break;
-            case 'Apatico':
-                setApatico(apatico + acomuladoresPersonalidad(radioCheck))
-                break;
-            
-            case 'NerviosoSentimentalAmorfo':
-                setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                break;
-                
+                <h3>esperando...</h3>
+            </>)
+
+
+    } else {
+
+
+
+
+        const valoracion = (radioCheck) => {
+
+            switch (questions[next - 1].category) {
+                case 'Colerico':
+                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Apasionado':
+                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Sanguineo':
+                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Flematico':
+                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Nervioso':
+                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Sentimental':
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Amorfo':
+                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                    break;
+                case 'Apatico':
+                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break;
+
+                case 'NerviosoSentimentalAmorfo':
+                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                    break;
+
                 case 'SanguineoAmorfoFlematico':
                     setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
                     setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
@@ -114,139 +96,173 @@ const TestPersonalidad = () => {
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
                     break;
-    
+
                 case 'ApasionadoFlematicoSentimental':
-                setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
-                setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
-                setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                break;      
+                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    break;
 
                 case 'ApasionadoSentimentalAmorfo':
-                    setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
                     setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
                     setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    break;       
+                    break;
 
                 case 'ApaticoAmorfo':
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                    break; 
+                    break;
 
                 case 'ColericoSanguineo':
                     setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
                     setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                    break; 
+                    break;
 
-                    case 'ColericoNervioso':
-                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                        setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                    break; 
-                    
-                    case 'NerviosoSentimental':
-                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                        setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                    break; 
+                case 'ColericoNervioso':
+                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    break;
 
-                    case 'SentimentalFlematico':
-                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
-                    break;  
+                case 'NerviosoSentimental':
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                    break;
 
-                    case 'ApaticoSentimental':
-                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
-                    break; 
+                case 'SentimentalFlematico':
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    break;
 
-                    case 'ColericoApasionado':
-                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                        setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
-                    break; 
-            default:
-                break;
+                case 'ApaticoSentimental':
+                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    break;
+
+                case 'ColericoApasionado':
+                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
+                    break;
+                default:
+                    break;
+            }
+
         }
+        const handleFinalizar = () => {
+            setCategorias([colerico, apasionado, sanguineo, flematico, nervioso, sentimental, amorfo, apatico])
+            setGuardarTest(false)
+        }
+        const handleVerResult = () => {
+            dispatch(Categoria(categorias))
+        }
+        return (
+            <div>
+                <Navbar />
 
-    }
-    const handleFinalizar = () => {
-        setCategorias([colerico,apasionado,sanguineo,flematico,nervioso,sentimental,amorfo,apatico])
-        setGuardarTest(false)        
-    }
-   const handleVerResult = () =>{
-   dispatch(Categoria(categorias))
-    }
-    return (
-        <div>
-            <Navbar />
-           
-            <div className="container-lg">
-                <div className="d-flex justify-content-center">
-                    <Card style={{ width: '50rem' }} className="Cards rounded">
-                        <Card.Body>
-                            <div className="row d-flex justify-content-center">
-                                <h4 className="text-center mb-2">Test de Personalidad</h4>
-                                <h6 className="text mb-5">Marca SI o NO de acuedo a su Interes</h6>
-                                <div className="col-2 text-center bg-primary m-auto rounded w-25">
-                                <p className="text-center text-white">Pregunta</p>
-                                    <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
-                                </div>
-                                <div className="col-8 ">
-                                    <p>{questions[next - 1].question}</p>
-                                    <FormGroup className="formGroupRadios">
-                                        <FormGroup className="mx-2 fs-3 text">
-                                            <Input
-                                                id="radio0"
-                                                type="radio"
-                                                value={0}
-                                                checked={radioCheck == 0 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label htmlFor="radio0">
-                                                Si
-                                            </Label>
-                                        </FormGroup>
-
-                                        <FormGroup className="mx-2 fs-3 text">
-                                            <Input
-                                                id="radio1"
-                                                type="radio"
-                                                value={1}
-                                                checked={radioCheck == 1 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label htmlFor="radio1">
-                                                No 
-                                            </Label>
-                                        </FormGroup>
-
-                                    </FormGroup>
-
-                                </div>
-                            </div>
-                    
-                            {
-                                guardarTest?
-                                (!statetest ? 
-                                (<div className="d-flex justify-content-end">
-                                    <Button variant="primary" onClick={handleSumar}>Siguente</Button>
-                                    </div>) : (
-                                   <div className="d-flex justify-content-end">
-                                    <Button variant="primary" onClick={handleFinalizar}>Finalizar</Button>
+                <div className="container-lg">
+                    <div className="d-flex justify-content-center">
+                        <Card style={{ width: '50rem' }} className="Cards rounded">
+                            <Card.Body>
+                                <div className="row d-flex justify-content-center">
+                                    <h4 className="text-center mb-2">Test de Personalidad</h4>
+                                    <h6 className="text mb-5">Marca SI o NO de acuedo a su Interes</h6>
+                                    <div className="col-2 text-center bg-primary m-auto rounded w-25">
+                                        <p className="text-center text-white">Pregunta</p>
+                                        <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                     </div>
-                                    ))
-                                :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultadosPersonalidad">
-                                    <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
-                                    </Link> 
+                                    <div className="col-8 ">
+                                        <p>{questions[next - 1].question}</p>
+                                        <Formik
+                                            initialValues={{
+                                                radiocheck: "",
+                                            }}
+                                            validate={(valores) => {
+                                                let errores = {};
+
+                                                if (!valores.radiocheck) {
+                                                    errores.radiocheck = "Por selecciona una opción";
+                                                }
+                                                return errores;
+                                            }}
+                                            onSubmit={(value) => {
+                                                if (next <= questions.length) {
+                                                    valoracion(value.radiocheck);
+                                                    if (next === questions.length) {
+                                                        setStatetest(true);
+                                                    } else {
+                                                        value.radiocheck = "";
+                                                        setNext(next + 1);
+                                                    }
+                                                }
+                                            }}
+                                        >
+                                            {({ values, errors, touched, handleSubmit }) => (
+                                                <Form onSubmit={handleSubmit}>
+                                                    <div id="radioGroup"></div>
+                                                    <div role="group" aria-labelledby="my-radio-group">
+                                                        <label>
+                                                            <Field type="radio" name="radiocheck" value="0" className="mx-2"/>
+                                                            SI
+                                                        </label>
+
+                                                        <label >
+                                                            <Field type="radio" name="radiocheck" value="1" className="mx-2"/>
+                                                            NO
+                                                        </label>
+
+
+                                                    </div>
+
+                                                    {touched.radiocheck && errors.radiocheck && (
+                                                        <div className="text-danger">
+                                                            {errors.radiocheck}
+                                                        </div>
+                                                    )}
+
+                                                    {guardarTest ? (
+                                                        !statetest ? (
+                                                            <div className="d-flex justify-content-end">
+                                                                <Button variant="primary" type="submit">
+                                                                    Siguente
+                                                                </Button>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="d-flex justify-content-end">
+                                                                <Button
+                                                                    variant="primary"
+                                                                    onClick={handleFinalizar}
+                                                                >
+                                                                    Finalizar
+                                                                </Button>
+                                                            </div>
+                                                        )
+                                                    ) : (
+                                                        <div className="d-flex justify-content-end">
+                                                            <Link to="/resultadosPersonalidad">
+                                                                <Button
+                                                                    variant="primary"
+                                                                    onClick={handleVerResult}
+                                                                >
+                                                                    Ver Resultados
+                                                                </Button>
+                                                            </Link>
+                                                        </div>
+                                                    )}
+                                                </Form>
+                                            )}
+                                        </Formik>
+
                                     </div>
-                                )
-                                }  
-                                <p>seleccion {radioCheck}</p>
-                        </Card.Body>
-                    </Card>
+                                </div>
+
+
+                            </Card.Body>
+                        </Card>
+                    </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-    );
-}
+        );
+    }
 }
 export default TestPersonalidad;

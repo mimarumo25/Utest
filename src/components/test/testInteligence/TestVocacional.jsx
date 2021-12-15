@@ -6,12 +6,12 @@ import { Link } from "react-router-dom"
 import { Input, Label } from "reactstrap"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
-import { acomuladores, acomuladoresVocacional } from "../../helpers/acomuladores"
+import {acomuladoresVocacional } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
 import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction"
+import { Field, Form, Formik } from "formik"
 
 const TestVocacional = () => {
-
 
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
@@ -24,15 +24,13 @@ const TestVocacional = () => {
     const [d, setD] = useState(0);
     const [e, setE] = useState(0);
 
-
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listarVocacional.preguntas)
 
     useEffect(() => {
-
         dispatch(listarPreguntasTestVocacional())
     },
-        [dispatch])
+    [dispatch])
 
     if (!questions) {
         return (
@@ -43,29 +41,7 @@ const TestVocacional = () => {
 
     } else {
 
-
-
-        const handleChangeRadio = e => {
-            setRadioCheck(e.target.value);
-        }
-
-        const handleSumar = () => {
-            if (next <= questions.length) {
-                valoracion();
-                if (next === questions.length) {
-                    setStatetest(true)
-
-                } else {
-                    setNext(next + 1)
-                    setRadioCheck();
-
-                }
-            }
-
-        }
-
-        const valoracion = () => {
-
+        const valoracion = (radioCheck) => {            
             switch (questions[next - 1].category) {
                 case 'a':
                     setA(a + acomuladoresVocacional(radioCheck))
@@ -83,9 +59,8 @@ const TestVocacional = () => {
                     setE(e + acomuladoresVocacional(radioCheck))
                     break;
                 default:
-                    break;
+                    break;                  
             }
-
 
         }
         const handleFinalizar = () => {
@@ -97,8 +72,7 @@ const TestVocacional = () => {
         }
         return (
             <div>
-            <Navbar />
-           
+            <Navbar />           
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
                     <Card style={{ width: '50rem' }} className="Cards rounded">
@@ -112,63 +86,93 @@ const TestVocacional = () => {
                                 </div>
                                 <div className="col-8 ">
                                     <p>{questions[next - 1].questions}</p>
-                                    <FormGroup className="formGroupRadios">
-                                        <FormGroup className="mx-2 fs-5 text">
-                                            <Input
-                                                id="radio0"
-                                                type="radio"
-                                                value={0}
-                                                checked={radioCheck == 0 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label htmlFor="radio0">
-                                                Me Interesa
-                                            </Label>
-                                        </FormGroup>
+                                    <Formik
+                      initialValues={{
+                        radiocheck: "",
+                      }}
+                      validate={(valores) => {
+                        let errores = {};
 
-                                        <FormGroup className="mx-2 fs-5 text">
-                                            <Input
-                                                id="radio1"
-                                                type="radio"
-                                                value={1}
-                                                checked={radioCheck == 1 ? true : false}
-                                                onChange={handleChangeRadio}
-                                            />
-                                            <Label htmlFor="radio1">
-                                                No Me Interesa
-                                            </Label>
-                                        </FormGroup>
+                        if (!valores.radiocheck) {
+                          errores.radiocheck = "Por selecciona una opción";
+                        }
+                        return errores;
+                      }}
+                      onSubmit={(value) => {
+                        if (next <= questions.length) {
+                          valoracion(value.radiocheck);
+                          if (next === questions.length) {
+                            setStatetest(true);
+                          } else {
+                            value.radiocheck = "";
+                            setNext(next + 1);
+                          }
+                        }
+                      }}
+                    >
+                      {({ values, errors, touched, handleSubmit }) => (
+                        <Form onSubmit={handleSubmit}>
+                          
+                          <div role="group" aria-labelledby="my-radio-group">
+                            <label>
+                              <Field type="radio" name="radiocheck" value="0" className="mx-2 fs-5 text"/>
+                              Me Interesa
+                            </label>
 
-                                    </FormGroup>
+                            <label>
+                              <Field type="radio" name="radiocheck" value="1" className="mx-2 fs-5 text"/>
+                              NO Interesa
+                            </label>
+                          </div>
 
+                          {touched.radiocheck && errors.radiocheck && (
+                            <div className="text-danger">
+                              {errors.radiocheck}
+                            </div>
+                          )}
+
+                          {guardarTest ? (
+                            !statetest ? (
+                              <div className="d-flex justify-content-end">
+                                <Button variant="primary" type="submit">
+                                  Siguente
+                                </Button>
+                              </div>
+                            ) : (
+                              <div className="d-flex justify-content-end">
+                                <Button
+                                  variant="primary"
+                                  onClick={handleFinalizar}
+                                >
+                                  Finalizar
+                                </Button>
+                              </div>
+                            )
+                          ) : (
+                            <div className="d-flex justify-content-end">
+                              <Link to="/resultadosVocacional">
+                                <Button
+                                  variant="primary"
+                                  onClick={handleVerResult}
+                                >
+                                  Ver Resultados
+                                </Button>
+                              </Link>
+                            </div>
+                          )}
+                        </Form>
+                      )}
+                    </Formik>
                                 </div>
                             </div>
                     
-                            {
-                                guardarTest?
-                                (!statetest ? 
-                                (<div className="d-flex justify-content-end">
-                                    <Button variant="primary" onClick={handleSumar}>Siguente</Button>
-                                    </div>) : (
-                                   <div className="d-flex justify-content-end">
-                                    <Button variant="primary" onClick={handleFinalizar}>Finalizar</Button>
-                                    </div>
-                                    ))
-                                :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultadosVocacional">
-                                    <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
-                                    </Link> 
-                                    </div>
-                                )
-                                }  
-                                 <p>seleccion {radioCheck}</p>
+                            
                         </Card.Body>
                     </Card>
                 </div>
             </div>
             <Footer />
-        </div>
-           
+        </div>           
         );
     }
 }

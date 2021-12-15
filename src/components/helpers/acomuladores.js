@@ -20,7 +20,7 @@ export const acomuladoresVocacional = (dato) => {
   let acomu = 0;
   switch (dato) {
     case "0":
-      acomu = 16;
+      acomu = 6.25;
       break;
     default:
       break;
