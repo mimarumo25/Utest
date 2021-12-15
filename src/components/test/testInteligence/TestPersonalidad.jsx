@@ -3,10 +3,9 @@ import { Button, Card, FormGroup } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { Input, Label } from "reactstrap"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
-import { acomuladoresPersonalidad, acomuladoresVocacional } from "../../helpers/acomuladores"
+import { acomuladoresPersonalidad } from "../../helpers/acomuladores"
 import Navbar from '../../navbar/Navbar.jsx'
 import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 import { Field, Form, Formik } from "formik"
