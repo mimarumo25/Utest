@@ -4,6 +4,8 @@ import { listarReducer } from "../reducers/listarReducer";
 import { categoriaReducer } from "../reducers/categoriasReducer";
 import { loginReducer } from "../reducers/loginReducer";
 import { registerReducer } from "../reducers/registerReducer";
+import { listarPersonalidadReducer } from "../reducers/listarPersonalidadReducer";
+import { listarVocacionalReducer } from "../reducers/listarVocacionalReducer";
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -14,6 +16,8 @@ const reducers = combineReducers({
   login: loginReducer,
   register: registerReducer,
   listar: listarReducer,
+  listarPersonalidad: listarPersonalidadReducer,
+  listarVocacional: listarVocacionalReducer,
   categoria:categoriaReducer
 });
 

@@ -14,13 +14,13 @@ export const listarPreguntasTestVocacional = () => {
                 ...doc.data()
             })
         });
-        dispatch(listSync(questions));
+        dispatch(listarVocacional(questions));
     }
 }
 
-export const listSync = (preguntas) => {
+export const listarVocacional = (preguntas) => {
     return {
-        type: types.listar,
+        type: types.listarVocacional,
         payload: preguntas
     }
 }

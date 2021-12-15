@@ -15,3 +15,27 @@ export const acomuladores = (dato) => {
   }
   return acomu; 
 };
+
+export const acomuladoresVocacional = (dato) => {
+  let acomu = 0;
+  switch (dato) {
+    case "1":
+      acomu = 16;
+      break;
+    default:
+      break;
+  }
+  return acomu;
+};
+
+export const acomuladoresPersonalidad = (dato) => {
+  let acomu = 0;
+  switch (dato) {
+    case "1":
+      acomu = 10;
+      break;
+    default:
+      break;
+  }
+  return acomu;
+};

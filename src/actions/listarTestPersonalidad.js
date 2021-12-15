@@ -13,13 +13,13 @@ export const listarTestPersonalidad = () => {
                 ...doc.data()
             })
         });
-        dispatch(listSync(questions));
+        dispatch(listarPersonalidad(questions));
     }
 }
 
-export const listSync = (preguntas) => {
+export const listarPersonalidad = (preguntas) => {
     return {
-        type: types.listar,
+        type: types.listarPersonalidad,
         payload: preguntas
     }
 }
