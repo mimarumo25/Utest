@@ -201,10 +201,6 @@ const Runtest = () => {
                                 )
                                 }  
                         </Card.Body>
-<<<<<<< HEAD
-                      
-=======
->>>>>>> bbe0d46765dde9444f5f26978a2edef64c49bc31
                     </Card>
                 </div>
             </div>
