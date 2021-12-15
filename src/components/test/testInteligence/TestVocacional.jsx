@@ -107,7 +107,7 @@ const TestVocacional = () => {
                                 <h4 className="text-center mb-2">Test Vocacional</h4>
                                 <h6 className="text mb-5">Marca <b>Me Interesa</b> o <b>No Me Interesa</b> de acuerdo a su Interes</h6>
                                 <div className="col-2 text-center bg-primary m-auto rounded w-25">
-                                <p className="text-center text-white">Preguntas</p>
+                                <p className="text-center text-white">Pregunta</p>
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
@@ -155,12 +155,13 @@ const TestVocacional = () => {
                                     </div>
                                     ))
                                 :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultadosPersonalidad">
+                                    <Link to="/resultadosVocacional">
                                     <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
                                     </Link> 
                                     </div>
                                 )
                                 }  
+                                 <p>seleccion {radioCheck}</p>
                         </Card.Body>
                     </Card>
                 </div>

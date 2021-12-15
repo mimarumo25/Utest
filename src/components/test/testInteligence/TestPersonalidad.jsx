@@ -10,8 +10,6 @@ import { acomuladoresPersonalidad, acomuladoresVocacional } from "../../helpers/
 import Navbar from '../../navbar/Navbar.jsx'
 import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 
-
-
 const TestPersonalidad = () => {
 
     
@@ -187,7 +185,7 @@ const TestPersonalidad = () => {
                                 <h4 className="text-center mb-2">Test de Personalidad</h4>
                                 <h6 className="text mb-5">Marca SI o NO de acuedo a su Interes</h6>
                                 <div className="col-2 text-center bg-primary m-auto rounded w-25">
-                                <p className="text-center text-white">Preguntas</p>
+                                <p className="text-center text-white">Pregunta</p>
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
@@ -241,6 +239,7 @@ const TestPersonalidad = () => {
                                     </div>
                                 )
                                 }  
+                                <p>seleccion {radioCheck}</p>
                         </Card.Body>
                     </Card>
                 </div>

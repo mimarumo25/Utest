@@ -111,13 +111,16 @@ const Runtest = () => {
                         <Card style={{ width: '50rem' }} className="Cards rounded">
                             <Card.Body>
                                 <div className="row d-flex justify-content-center">
+                                <h4 className="text-center mb-2">Test de Inteligencia</h4>
+                                <h6 className="text mb-5">Marca de 0 a 3 de acuerdo a su Interes, donde 0 es de menor interes y 3 de mayor interes</h6>
                                     <div className="col-2 text-center bg-primary m-auto rounded w-25">
+                                    <p className="text-center text-white">Pregunta</p>
                                         <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                     </div>
                                     <div className="col-8 ">
                                         <p>{questions[next - 1].questions}</p>
                                         <FormGroup className="formGroupRadios">
-                                            <FormGroup>
+                                            <FormGroup className="mx-2 fs-5 text">
                                                 <Input
                                                     id="radio0"
                                                     type="radio"
@@ -130,7 +133,7 @@ const Runtest = () => {
                                                 </Label>
                                             </FormGroup>
 
-                                            <FormGroup>
+                                            <FormGroup className="mx-2 fs-5 text">
                                                 <Input
                                                     id="radio1"
                                                     type="radio"
@@ -191,6 +194,7 @@ const Runtest = () => {
                                         </div>
                                         )
                                 }
+                                 <p>seleccion {radioCheck}</p>
                             </Card.Body>
                         </Card>
                     </div>
