@@ -47,9 +47,6 @@ const TestPersonalidad = () => {
 
     } else {
 
-
-
-
         const valoracion = (radioCheck) => {
 
             switch (questions[next - 1].category) {
@@ -57,7 +54,7 @@ const TestPersonalidad = () => {
                     setColerico(colerico + acomuladoresPersonalidad(radioCheck))
                     break;
                 case 'Apasionado':
-                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
+                     setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                     break;
                 case 'Sanguineo':
                     setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
@@ -77,71 +74,103 @@ const TestPersonalidad = () => {
                 case 'Apatico':
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     break;
-
+                
                 case 'NerviosoSentimentalAmorfo':
                     setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
                     setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
                     setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
                     break;
-
-                case 'SanguineoAmorfoFlematico':
-                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
-                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'FlematicoApaticoSentimental':
-                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                    
+                    case 'SanguineoAmorfoFlematico':
+                        setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                        setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        break;
+    
+                    case 'FlematicoApaticoSentimental':
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        break;
+        
+                    case 'ApasionadoFlematicoSentimental':
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                    setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                     setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ApasionadoFlematicoSentimental':
-                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
-                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
-                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ApasionadoSentimentalAmorfo':
-                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
-                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ApaticoAmorfo':
-                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
-                    setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ColericoSanguineo':
-                    setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
-                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ColericoNervioso':
-                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'NerviosoSentimental':
-                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'SentimentalFlematico':
-                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ApaticoSentimental':
-                    setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
-                    setApatico(apatico + acomuladoresPersonalidad(radioCheck))
-                    break;
-
-                case 'ColericoApasionado':
-                    setColerico(colerico + acomuladoresPersonalidad(radioCheck))
-                    setApacionado(apasionado + acomuladoresPersonalidad(radioCheck))
-                    break;
+                    break;    
+    
+                    case 'ColericoApasionadoNervioso':
+                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                        setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                        setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                        break;  
+                    
+    
+    
+                    case 'ApasionadoSentimentalAmorfo':
+                        setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                        setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                        setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        break;       
+    
+                    case 'ApaticoAmorfo':
+                        setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                    case 'ColericoSanguineo':
+                        setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
+                        setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'ColericoNervioso':
+                            setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                            setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                        break; 
+                        
+                        case 'NerviosoSentimental':
+                            setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                            setNervioso(nervioso + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'SentimentalFlematico':
+                            setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                            setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                        break;  
+    
+                        case 'ApaticoSentimental':
+                            setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                            setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'ColericoApasionado':
+                            setColerico(colerico + acomuladoresPersonalidad(radioCheck))
+                            setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'FlematicoApatico':
+                            setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                            setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'SentimentalFlematico ':
+                            setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                            setSentimental(sentimental + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'ApaticoFlematico':
+                            setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                            setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+                        case 'FlematicoApatico':
+                            setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
+                            setApatico(apatico + acomuladoresPersonalidad(radioCheck))
+                        break; 
+    
+    
+    
+    
                 default:
                     break;
             }
