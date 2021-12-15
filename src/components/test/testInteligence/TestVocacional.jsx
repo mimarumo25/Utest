@@ -12,7 +12,7 @@ import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction
 
 const TestVocacional = () => {
 
-    
+
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
@@ -23,113 +23,119 @@ const TestVocacional = () => {
     const [c, setC] = useState(0);
     const [d, setD] = useState(0);
     const [e, setE] = useState(0);
- 
+
 
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listarVocacional.preguntas)
 
-   useEffect(() => {
-    
-    dispatch(listarPreguntasTestVocacional())    
-  }, 
-[dispatch])
+    useEffect(() => {
 
-   if(!questions){
-       return  <h3>esperando...</h3>      
-       
-   }else{
-     
-    
-  
-    const handleChangeRadio = e => {
-        setRadioCheck(e.target.value);
-    }
-    
-    const handleSumar = () => {
-        if (next <= questions.length) {
-            valoracion();
-            if (next === questions.length) {
-                setStatetest(true)
-                
-            } else {
-                setNext(next + 1)
-                setRadioCheck();
-                
+        dispatch(listarPreguntasTestVocacional())
+    },
+        [dispatch])
+
+    if (!questions) {
+        return (
+            <>
+                <Navbar />
+                <h3>esperando...</h3>
+            </>)
+
+    } else {
+
+
+
+        const handleChangeRadio = e => {
+            setRadioCheck(e.target.value);
+        }
+
+        const handleSumar = () => {
+            if (next <= questions.length) {
+                valoracion();
+                if (next === questions.length) {
+                    setStatetest(true)
+
+                } else {
+                    setNext(next + 1)
+                    setRadioCheck();
+
+                }
             }
+
         }
 
-    }
-   
-    const valoracion = () => {
+        const valoracion = () => {
 
-        switch (questions[next - 1].category) {
-            case 'a':
-                setA(a + acomuladoresVocacional(radioCheck))
-                break;
-            case 'b':
-                 setB( b + acomuladoresVocacional(radioCheck))
-                break;
-            case 'c':
-                setC(c + acomuladoresVocacional(radioCheck))
-                break;
-            case 'd':
-                setD(d + acomuladoresVocacional(radioCheck))
-                break;
-            case 'e':
-                setE(e + acomuladoresVocacional(radioCheck))
-                break;
-            default:
-                break;
+            switch (questions[next - 1].category) {
+                case 'a':
+                    setA(a + acomuladoresVocacional(radioCheck))
+                    break;
+                case 'b':
+                    setB(b + acomuladoresVocacional(radioCheck))
+                    break;
+                case 'c':
+                    setC(c + acomuladoresVocacional(radioCheck))
+                    break;
+                case 'd':
+                    setD(d + acomuladoresVocacional(radioCheck))
+                    break;
+                case 'e':
+                    setE(e + acomuladoresVocacional(radioCheck))
+                    break;
+                default:
+                    break;
+            }
+
+
         }
-
-
-    }
-    const handleFinalizar = () => {
-        setCategorias([a,b,c,d,e ])
-        setGuardarTest(false)        
-    }
-   const handleVerResult = () =>{
-   dispatch(Categoria(categorias))
-    }
-    return (
-        
-        <div>
+        const handleFinalizar = () => {
+            setCategorias([a, b, c, d, e])
+            setGuardarTest(false)
+        }
+        const handleVerResult = () => {
+            dispatch(Categoria(categorias))
+        }
+        return (
+            <div>
             <Navbar />
-            
+           
             <div className="container-lg">
                 <div className="d-flex justify-content-center">
                     <Card style={{ width: '50rem' }} className="Cards rounded">
                         <Card.Body>
                             <div className="row d-flex justify-content-center">
+                                <h4 className="text-center mb-2">Test Vocacional</h4>
+                                <h6 className="text mb-5">Marca <b>Me Interesa</b> o <b>No Me Interesa</b> de acuerdo a su Interes</h6>
                                 <div className="col-2 text-center bg-primary m-auto rounded w-25">
+                                <p className="text-center text-white">Preguntas</p>
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
                                     <p>{questions[next - 1].questions}</p>
                                     <FormGroup className="formGroupRadios">
-                                        <FormGroup>
+                                        <FormGroup className="mx-2 fs-5 text">
                                             <Input
                                                 id="radio0"
                                                 type="radio"
-                                                value={1}
+                                                value={0}
                                                 checked={radioCheck == 0 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
-                                            <Label for="radio0">
-                                                Me interesa
+                                            <Label htmlFor="radio0">
+                                                Me Interesa
                                             </Label>
                                         </FormGroup>
 
-                                        <FormGroup>
+                                        <FormGroup className="mx-2 fs-5 text">
                                             <Input
                                                 id="radio1"
                                                 type="radio"
-                                                value={0}
+                                                value={1}
                                                 checked={radioCheck == 1 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
-                                            <Label for="radio1">
-                                                No me interesa
+                                            <Label htmlFor="radio1">
+                                                No Me Interesa
                                             </Label>
                                         </FormGroup>
 
@@ -137,7 +143,7 @@ const TestVocacional = () => {
 
                                 </div>
                             </div>
-
+                    
                             {
                                 guardarTest?
                                 (!statetest ? 
@@ -149,7 +155,7 @@ const TestVocacional = () => {
                                     </div>
                                     ))
                                 :(<div className="d-flex justify-content-end">
-                                    <Link to="/resultadosVocacional">
+                                    <Link to="/resultadosPersonalidad">
                                     <Button variant="primary" onClick={handleVerResult}>Ver Resultados</Button>
                                     </Link> 
                                     </div>
@@ -161,7 +167,8 @@ const TestVocacional = () => {
             </div>
             <Footer />
         </div>
-    );
-}
+           
+        );
+    }
 }
 export default TestVocacional;

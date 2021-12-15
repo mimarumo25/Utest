@@ -31,7 +31,7 @@ const TestPersonalidad = () => {
 
     const dispatch = useDispatch()
     const [questions] = useSelector(state => state.listarPersonalidad.preguntas)
-console.log(questions)
+
    useEffect(() => {
     
     dispatch(listarTestPersonalidad()) 
@@ -40,7 +40,13 @@ console.log(questions)
    [dispatch])
 
    if(!questions){
-       return  <h3>esperando...</h3>      
+    return(  
+       <>
+        <Navbar />
+        
+        <h3>esperando...</h3>   
+       </>)
+         
        
    }else{
      
@@ -68,16 +74,16 @@ console.log(questions)
     const valoracion = () => {
 
         switch (questions[next - 1].category) {
-            case 'Colérico':
+            case 'Colerico':
                 setColerico(colerico + acomuladoresPersonalidad(radioCheck))
                 break;
             case 'Apasionado':
                  setApacionado( apasionado + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'Sanguíneo':
+            case 'Sanguineo':
                 setSanguineo(sanguineo + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'Flemático':
+            case 'Flematico':
                 setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                 break;
             case 'Nervioso':
@@ -89,7 +95,7 @@ console.log(questions)
             case 'Amorfo':
                 setAmorfo(amorfo + acomuladoresPersonalidad(radioCheck))
                 break;
-            case 'Apático':
+            case 'Apatico':
                 setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                 break;
             
@@ -178,13 +184,16 @@ console.log(questions)
                     <Card style={{ width: '50rem' }} className="Cards rounded">
                         <Card.Body>
                             <div className="row d-flex justify-content-center">
+                                <h4 className="text-center mb-2">Test de Personalidad</h4>
+                                <h6 className="text mb-5">Marca SI o NO de acuedo a su Interes</h6>
                                 <div className="col-2 text-center bg-primary m-auto rounded w-25">
+                                <p className="text-center text-white">Preguntas</p>
                                     <h1 className="text-light">{`${next} / ${questions.length}`}</h1>
                                 </div>
                                 <div className="col-8 ">
                                     <p>{questions[next - 1].question}</p>
                                     <FormGroup className="formGroupRadios">
-                                        <FormGroup>
+                                        <FormGroup className="mx-2 fs-3 text">
                                             <Input
                                                 id="radio0"
                                                 type="radio"
@@ -192,12 +201,12 @@ console.log(questions)
                                                 checked={radioCheck == 0 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
-                                            <Label for="radio0">
+                                            <Label htmlFor="radio0">
                                                 Si
                                             </Label>
                                         </FormGroup>
 
-                                        <FormGroup>
+                                        <FormGroup className="mx-2 fs-3 text">
                                             <Input
                                                 id="radio1"
                                                 type="radio"
@@ -205,7 +214,7 @@ console.log(questions)
                                                 checked={radioCheck == 1 ? true : false}
                                                 onChange={handleChangeRadio}
                                             />
-                                            <Label for="radio1">
+                                            <Label htmlFor="radio1">
                                                 No 
                                             </Label>
                                         </FormGroup>
@@ -214,7 +223,7 @@ console.log(questions)
 
                                 </div>
                             </div>
-
+                    
                             {
                                 guardarTest?
                                 (!statetest ? 
