@@ -9,19 +9,21 @@ export default function ResultadosPersonalidad() {
   const { categoria } = useSelector((store) => store.categoria);
   const { resultado } = useSelector((store) => store.listarResultadosPers);
   const [modalShow, setModalShow] = useState(false);
-  const [data, setData] = useState({})
- 
+  const [data, setData] = useState({});
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(listarResultadosPersActions());
   }, []);
 
-  const hanndleModal = (cat)=>{
-    const resp = resultado.find(rs => rs.categoria?.toLowerCase()===cat.toLowerCase());
-       setModalShow(true)
-    setData(resp)
-  }
+  const hanndleModal = (cat) => {
+    const resp = resultado.find(
+      (rs) => rs.categoria?.toLowerCase() === cat.toLowerCase()
+    );
+    setModalShow(true);
+    setData(resp);
+  };
   return (
     <div>
       <NavBar />
@@ -32,12 +34,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 A) Colérico{" "}
-                <small
-                  className=" btn-outline-primary my-1"
-                  onClick={() => hanndleModal("Colerico")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][0] >= 45 ? (
+                  <small
+                    className=" btn-outline-primary my-1"
+                    onClick={() => hanndleModal("Colerico")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -56,12 +62,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 B) Apasionado{" "}
-                <small
-                  className="btn-outline-success my-1"
-                  onClick={() => hanndleModal("apasionado")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][1] >= 45 ? (
+                  <small
+                    className="btn-outline-success my-1"
+                    onClick={() => hanndleModal("apasionado")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -78,12 +88,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 C) Sanguíneo{" "}
-                <small
-                  className=" btn-outline-info my-1"
-                  onClick={() => hanndleModal("sanguineo")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][2] >= 45 ? (
+                  <small
+                    className=" btn-outline-info my-1"
+                    onClick={() => hanndleModal("sanguineo")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -100,12 +114,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 D) Flemático{" "}
-                <small
-                  className=" btn-outline-warning my-1"
-                  onClick={() => hanndleModal("Flematico")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][3] >= 45 ? (
+                  <small
+                    className=" btn-outline-warning my-1"
+                    onClick={() => hanndleModal("Flematico")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -122,12 +140,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 E) Nervioso{" "}
-                <small
-                  className=" btn-outline-danger my-1"
-                  onClick={() => hanndleModal("nervioso")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][4] >= 45 ? (
+                  <small
+                    className=" btn-outline-danger my-1"
+                    onClick={() => hanndleModal("nervioso")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -144,12 +166,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 F) Sentimental{" "}
-                <small
-                  className=" btn-outline-dark my-1"
-                  onClick={() => hanndleModal("sentimental")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][5] >= 45 ? (
+                  <small
+                    className=" btn-outline-dark my-1"
+                    onClick={() => hanndleModal("sentimental")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -166,12 +192,16 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 G) Amorfo{" "}
-                <small
-                  className=" btn-outline-secondary my-1"
-                  onClick={() => hanndleModal("amorfo")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][6] >= 45 ? (
+                  <small
+                    className=" btn-outline-secondary my-1"
+                    onClick={() => hanndleModal("amorfo")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
@@ -188,28 +218,33 @@ export default function ResultadosPersonalidad() {
             <div className="nombreCategoria">
               <label htmlFor="">
                 H) Apatico{" "}
-                <small
-                  className=" btn-outline-secondary my-1"
-                  onClick={() => hanndleModal("apatico")}
-                >
-                  Ver Más
-                </small>
+                {categoria[0][7] > 45 ? (
+                  <small
+                    className=" btn-outline-secondary my-1"
+                    onClick={() => hanndleModal("apatico")}
+                  >
+                    Ver Más
+                  </small>
+                ) : (
+                  ""
+                )}
               </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-secondary"
                   role="progressbar"
-                  style={{ width: `${categoria[0][6]}%` }}
+                  style={{ width: `${categoria[0][7]}%` }}
                   aria-valuenow="100"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                >{`${categoria[0][6]}%`}</div>
+                >{`${categoria[0][7]}%`}</div>
               </div>
             </div>
             <ModalResultados
               show={modalShow}
               onHide={() => setModalShow(false)}
               data={data}
+              result={"personalidad"}
             />
           </div>
         </div>

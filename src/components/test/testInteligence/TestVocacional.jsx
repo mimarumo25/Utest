@@ -166,7 +166,16 @@ const TestVocacional = () => {
                                 </div>
                             </div>
                     
-                            
+                            <div className="d-flex justify-content-end">
+                              <Link to="/resultadosVocacional">
+                                <Button
+                                  variant="primary"
+                                  onClick={handleVerResult}
+                                >
+                                  Ver Resultados
+                                </Button>
+                              </Link>
+                            </div>
                         </Card.Body>
                     </Card>
                 </div>

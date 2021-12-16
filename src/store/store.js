@@ -7,7 +7,8 @@ import { registerReducer } from "../reducers/registerReducer";
 import { listarPersonalidadReducer } from "../reducers/listarPersonalidadReducer";
 import { listarVocacionalReducer } from "../reducers/listarVocacionalReducer";
 import { resultListarPersonalidadReducer } from "../reducers/resultListarPersonalidadReducer";
-//import { resulListarVocacionalReducer } from "../reducers/resultlistarVocacionalReducer";
+import { resulListarVocacionalReducer } from "../reducers/resultListarVocacionalReducer";
+
 
 const composeEnhancers =
   (typeof window !== "undefined" &&
@@ -22,7 +23,7 @@ const reducers = combineReducers({
   listarVocacional: listarVocacionalReducer,
   categoria:categoriaReducer,
   listarResultadosPers:resultListarPersonalidadReducer,
-  //listarResultadosVoca: resulListarVocacionalReducer
+  listarResultadosVoca: resulListarVocacionalReducer
 });
 
 const store = createStore(
