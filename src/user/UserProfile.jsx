@@ -14,7 +14,7 @@ export const UserProfile = ({ ...props }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const user = useSelector(store => store.login);
-    console.log(user)
+   
     const navigate = useNavigate();
     const dispatch = useDispatch();
 

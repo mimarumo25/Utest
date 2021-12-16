@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listarResultadosPersActions } from "../../actions/listarResultadosPersActions";
+import { ModalResultados } from "./ModalResultados";
 
 export default function ResultadosPersonalidad() {
-    const {categoria} = useSelector(store => store.categoria)     
-   return (
+  const { categoria } = useSelector((store) => store.categoria);
+  const { resultado } = useSelector((store) => store.listarResultadosPers);
+  const [modalShow, setModalShow] = useState(false);
+  const [data, setData] = useState({})
+ 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listarResultadosPersActions());
+  }, []);
+
+  const hanndleModal = (cat)=>{
+    const resp = resultado.find(rs => rs.categoria?.toLowerCase()===cat.toLowerCase());
+       setModalShow(true)
+    setData(resp)
+  }
+  return (
     <div>
       <NavBar />
       <div className="container">
@@ -13,7 +30,15 @@ export default function ResultadosPersonalidad() {
           <div className="card-header">Resutados</div>
           <div className="card-body text-primary">
             <div className="nombreCategoria">
-                <label htmlFor="">A) Colérico</label>
+              <label htmlFor="">
+                A) Colérico{" "}
+                <small
+                  className=" btn-outline-primary my-1"
+                  onClick={() => hanndleModal("Colerico")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped"
@@ -22,12 +47,22 @@ export default function ResultadosPersonalidad() {
                   aria-valuenow="10"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                >{`${categoria[0][0]}%`}</div>
+                >
+                  {`${categoria[0][0]}%`}
+                </div>
               </div>
             </div>
 
             <div className="nombreCategoria">
-            <label htmlFor="">B) Apasionado</label>
+              <label htmlFor="">
+                B) Apasionado{" "}
+                <small
+                  className="btn-outline-success my-1"
+                  onClick={() => hanndleModal("apasionado")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-success"
@@ -41,7 +76,15 @@ export default function ResultadosPersonalidad() {
             </div>
 
             <div className="nombreCategoria">
-                <label htmlFor="">C) Sanguíneo</label>
+              <label htmlFor="">
+                C) Sanguíneo{" "}
+                <small
+                  className=" btn-outline-info my-1"
+                  onClick={() => hanndleModal("sanguineo")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-info"
@@ -55,7 +98,15 @@ export default function ResultadosPersonalidad() {
             </div>
 
             <div className="nombreCategoria">
-                <label htmlFor="">D) Flemático</label>
+              <label htmlFor="">
+                D) Flemático{" "}
+                <small
+                  className=" btn-outline-warning my-1"
+                  onClick={() => hanndleModal("Flematico")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-warning"
@@ -69,7 +120,15 @@ export default function ResultadosPersonalidad() {
             </div>
 
             <div className="nombreCategoria">
-              <label htmlFor="" >E) Nervioso</label>
+              <label htmlFor="">
+                E) Nervioso{" "}
+                <small
+                  className=" btn-outline-danger my-1"
+                  onClick={() => hanndleModal("nervioso")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-danger"
@@ -83,7 +142,15 @@ export default function ResultadosPersonalidad() {
             </div>
 
             <div className="nombreCategoria">
-              <label htmlFor="" >F) Sentimental</label>
+              <label htmlFor="">
+                F) Sentimental{" "}
+                <small
+                  className=" btn-outline-dark my-1"
+                  onClick={() => hanndleModal("sentimental")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-dark"
@@ -96,9 +163,16 @@ export default function ResultadosPersonalidad() {
               </div>
             </div>
 
-
             <div className="nombreCategoria">
-              <label htmlFor="" >G) Amorfo</label>
+              <label htmlFor="">
+                G) Amorfo{" "}
+                <small
+                  className=" btn-outline-secondary my-1"
+                  onClick={() => hanndleModal("amorfo")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-secondary"
@@ -112,7 +186,15 @@ export default function ResultadosPersonalidad() {
             </div>
 
             <div className="nombreCategoria">
-              <label htmlFor="" >H) Apatico</label>
+              <label htmlFor="">
+                H) Apatico{" "}
+                <small
+                  className=" btn-outline-secondary my-1"
+                  onClick={() => hanndleModal("apatico")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-secondary"
@@ -124,6 +206,11 @@ export default function ResultadosPersonalidad() {
                 >{`${categoria[0][6]}%`}</div>
               </div>
             </div>
+            <ModalResultados
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              data={data}
+            />
           </div>
         </div>
       </div>
@@ -131,5 +218,4 @@ export default function ResultadosPersonalidad() {
       <Footer />
     </div>
   );
-  
 }

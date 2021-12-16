@@ -34,7 +34,7 @@ const TestPersonalidad = () => {
         dispatch(listarTestPersonalidad())
 
     },
-        [dispatch])
+        [])
 
     if (!questions) {
         return (
@@ -275,11 +275,21 @@ const TestPersonalidad = () => {
                                                                 </Button>
                                                             </Link>
                                                         </div>
+                                                        
                                                     )}
                                                 </Form>
+                                                
                                             )}
+                                             
                                         </Formik>
-
+                                        <Link to="/resultadosPersonalidad">
+                                                                <Button
+                                                                    variant="primary"
+                                                                    onClick={handleVerResult}
+                                                                >
+                                                                    Ver Resultados
+                                                                </Button>
+                                                            </Link>
                                     </div>
                                 </div>
 
