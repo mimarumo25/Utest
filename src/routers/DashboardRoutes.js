@@ -8,8 +8,6 @@ import TestPersonalidad from "../components/test/testInteligence/TestPersonalida
 import TestVocacional from "../components/test/testInteligence/TestVocacional";
 import ResultadosPersonalidad from "../components/test/ResultadosPersonalidad";
 import ResultadosVocacional from "../components/test/ResultadosVocacional";
-import validacionradio from "../components/pruebavalidaciones/validacionradio";
-import Validacionradio from "../components/pruebavalidaciones/validacionradio";
 
 export const DashboardRoutes = () => {
   
