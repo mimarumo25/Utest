@@ -1,8 +1,8 @@
 import { types } from "../types/types";
 
-export const resulListarVocacionalReducer = (state = {}, action) => {
+export const resultListarInteligenciaReducer = (state = {}, action) => {
     switch (action.type) {
-        case types.listarResultadosVoca:
+        case types.listarResultadosInte:
             return {
                 resultado: action.payload
             }

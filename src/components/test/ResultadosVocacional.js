@@ -8,21 +8,22 @@ import { listarResultadosVocaActions } from "../../actions/listarResultadosVocaA
 export default function ResultadosVocacional() {
   const { categoria } = useSelector((store) => store.categoria);
   const { resultado } = useSelector((store) => store.listarResultadosVoca);
-  //console.log(resultado);
+
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
+  const [vocacion, setVocacion] = useState("");
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-     dispatch(listarResultadosVocaActions());
-  }, []);
+    dispatch(listarResultadosVocaActions());
+  }, [dispatch]);
 
   const hanndleModal = (cat) => {
     const resp = resultado?.filter(
       (rs) => rs.area?.toLowerCase() === cat.toLowerCase()
     );
-    console.log(resp);
+    setVocacion(cat)
     setModalShow(true);
     setData(resp);
   };
@@ -38,7 +39,7 @@ export default function ResultadosVocacional() {
                 A) Arte y creatividad{"  "}
                 <small
                   className=" btn-outline-primary my-1"
-                  onClick={() => hanndleModal('Arte y creatividad')}
+                  onClick={() => hanndleModal("Arte y creatividad")}
                 >
                   Ver Más
                 </small>
@@ -60,7 +61,7 @@ export default function ResultadosVocacional() {
                 B) Ciencias sociales{"  "}
                 <small
                   className=" btn-outline-success my-1"
-                  onClick={() => hanndleModal('Ciencias sociales')}
+                  onClick={() => hanndleModal("Ciencias sociales")}
                 >
                   Ver Más
                 </small>
@@ -82,7 +83,9 @@ export default function ResultadosVocacional() {
                 C) Economía, administración y finanzas{"  "}
                 <small
                   className=" btn-outline-info my-1"
-                  onClick={() => hanndleModal('Economía, administración y finanzas')}
+                  onClick={() =>
+                    hanndleModal("Economía, administración y finanzas")
+                  }
                 >
                   Ver Más
                 </small>
@@ -101,10 +104,10 @@ export default function ResultadosVocacional() {
 
             <div className="nombreCategoria">
               <label htmlFor="">
-                D) Ciencia y tecnologí{"  "}
+                D) Ciencia y tecnología{"  "}
                 <small
                   className=" btn-outline-warning my-1"
-                  onClick={() => hanndleModal('Ciencia y tecnologí')}
+                  onClick={() => hanndleModal("Ciencia y tecnología")}
                 >
                   Ver Más
                 </small>
@@ -126,7 +129,11 @@ export default function ResultadosVocacional() {
                 E)Ciencias ecológicas, biológicas y de la salud{"  "}
                 <small
                   className=" btn-outline-danger my-1"
-                  onClick={() => hanndleModal('Ciencias ecológicas, biológicas y de la salud')}
+                  onClick={() =>
+                    hanndleModal(
+                      "Ciencias ecológicas, biológicas y de la salud"
+                    )
+                  }
                 >
                   Ver Más
                 </small>
@@ -142,17 +149,16 @@ export default function ResultadosVocacional() {
                 >{`${categoria[0][4]}%`}</div>
               </div>
             </div>
-           
+              <ModalResultados
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                data={data}
+                result={"vocacional"}
+                area={vocacion}
+              />
           </div>
         </div>
       </div>
-      <ModalResultados
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              data={data}
-              result={"vocacional"}
-            />
-
       <Footer />
     </div>
   );

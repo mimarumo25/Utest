@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { ModalResultados } from "./ModalResultados";
+import { listarResultadosInteActions } from "../../actions/listarResultadosInteActions";
 
 export default function Resultados() {
-    const {categoria} = useSelector(store => store.categoria)     
-   return (
+  const { categoria } = useSelector((store) => store.categoria);
+  const { resultado } = useSelector((store) => store.listarResultadosInt);
+
+  const [modalShow, setModalShow] = useState(false);
+  const [data, setData] = useState({});
+  const [datos, setDatos] = useState("");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(listarResultadosInteActions());
+  }, [dispatch]);
+
+
+  const hanndleModal = (cat) => {
+    console.log(cat.toLowerCase());
+   
+    const resp = resultado.find(
+      (rs) => rs.categoria?.toLowerCase() === cat.toLowerCase()
+    );
+     setModalShow(true);
+    setData(resp);
+    setDatos(cat)
+  };
+  return (
     <div>
       <NavBar />
       <div className="container">
@@ -13,7 +38,15 @@ export default function Resultados() {
           <div className="card-header">Resutados</div>
           <div className="card-body text-primary">
             <div className="nombreCategoria">
-                <label htmlFor="">A) Inteligencia Verbal</label>
+              <label>
+                A) Inteligencia Verbal{"  "}
+                <small
+                  className=" btn-outline-primary my-1"
+                  onClick={() => hanndleModal("Inteligencia Verbal")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped"
@@ -27,7 +60,15 @@ export default function Resultados() {
             </div>
 
             <div className="nombreCategoria">
-            <label htmlFor="">B) Inteligencia Lógico-matemática</label>
+              <label htmlFor="">
+                B) Inteligencia Lógico-matemática{"  "}
+                <small
+                  className=" btn-outline-success my-1"
+                  onClick={() => hanndleModal("inteligencia logico-matematica")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-success"
@@ -41,7 +82,15 @@ export default function Resultados() {
             </div>
 
             <div className="nombreCategoria">
-                <label htmlFor="">C) Inteligencia Visual espacial</label>
+              <label htmlFor="">
+                C) Inteligencia Visual espacial{"  "}
+                <small
+                  className=" btn-outline-info my-1"
+                  onClick={() => hanndleModal("inteligencia visual espacial")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-info"
@@ -55,7 +104,17 @@ export default function Resultados() {
             </div>
 
             <div className="nombreCategoria">
-                <label htmlFor="">D) Inteligencia kinestesica-corporal</label>
+              <label htmlFor="">
+                D) Inteligencia kinestesica-corporal{"  "}
+                <small
+                  className=" btn-outline-warning my-1"
+                  onClick={() =>
+                    hanndleModal("Inteligencia kinestesica-corporal")
+                  }
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-warning"
@@ -69,7 +128,15 @@ export default function Resultados() {
             </div>
 
             <div className="nombreCategoria">
-              <label htmlFor="" >E) Inteligencia Musical-rítmica</label>
+              <label htmlFor="">
+                E) Inteligencia Musical-rítmica{"  "}
+                <small
+                  className=" btn-outline-danger my-1"
+                  onClick={() => hanndleModal("Inteligencia Musical-rítmica")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-danger"
@@ -83,7 +150,15 @@ export default function Resultados() {
             </div>
 
             <div className="nombreCategoria">
-              <label htmlFor="" >F) Inteligencia Intrapersonal</label>
+              <label htmlFor="">
+                F) Inteligencia Intrapersonal{"  "}
+                <small
+                  className=" btn-outline-dark my-1"
+                  onClick={() => hanndleModal("Inteligencia Intrapersonal")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-dark"
@@ -96,9 +171,16 @@ export default function Resultados() {
               </div>
             </div>
 
-
             <div className="nombreCategoria">
-              <label htmlFor="" >E) Inteligencia Interpersonal</label>
+              <label htmlFor="">
+                E) Inteligencia Interpersonal{"  "}
+                <small
+                  className=" btn-outline-secondary my-1"
+                  onClick={() => hanndleModal("Inteligencia Interpersonal")}
+                >
+                  Ver Más
+                </small>
+              </label>
               <div className="progress">
                 <div
                   className="progress-bar progress-bar-striped bg-secondary"
@@ -110,6 +192,13 @@ export default function Resultados() {
                 >{`${categoria[0][6]}%`}</div>
               </div>
             </div>
+            <ModalResultados
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+              data={data}
+              result={"inteligencia"}
+              area={datos}
+            />
           </div>
         </div>
       </div>

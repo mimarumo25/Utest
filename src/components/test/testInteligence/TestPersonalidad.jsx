@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, Card, FormGroup } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
@@ -11,8 +11,6 @@ import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
 import { Field, Form, Formik } from "formik"
 
 const TestPersonalidad = () => {
-
-
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
@@ -30,18 +28,17 @@ const TestPersonalidad = () => {
     const [questions] = useSelector(state => state.listarPersonalidad.preguntas)
 
     useEffect(() => {
-
         dispatch(listarTestPersonalidad())
-
     },
-        [])
+        [dispatch])
 
     if (!questions) {
         return (
             <>
                 <Navbar />
-
-                <h3>esperando...</h3>
+                <div className="container">
+                    <h3 className="text-center">esperando...</h3>
+                </div>
             </>)
 
 
@@ -162,14 +159,10 @@ const TestPersonalidad = () => {
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     break;
-
                 case 'FlematicoApatico':
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     break;
-
-
-
 
                 default:
                     break;
@@ -237,8 +230,6 @@ const TestPersonalidad = () => {
                                                             <Field type="radio" name="radiocheck" value="1" className="mx-2" />
                                                             NO
                                                         </label>
-
-
                                                     </div>
 
                                                     {touched.radiocheck && errors.radiocheck && (
@@ -277,6 +268,7 @@ const TestPersonalidad = () => {
                                                         </div>
 
                                                     )}
+
                                                 </Form>
 
                                             )}

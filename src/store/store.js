@@ -8,6 +8,7 @@ import { listarPersonalidadReducer } from "../reducers/listarPersonalidadReducer
 import { listarVocacionalReducer } from "../reducers/listarVocacionalReducer";
 import { resultListarPersonalidadReducer } from "../reducers/resultListarPersonalidadReducer";
 import { resulListarVocacionalReducer } from "../reducers/resultListarVocacionalReducer";
+import { resultListarInteligenciaReducer } from "../reducers/resultListarInteligenciaReducer";
 
 
 const composeEnhancers =
@@ -23,7 +24,8 @@ const reducers = combineReducers({
   listarVocacional: listarVocacionalReducer,
   categoria:categoriaReducer,
   listarResultadosPers:resultListarPersonalidadReducer,
-  listarResultadosVoca: resulListarVocacionalReducer
+  listarResultadosVoca: resulListarVocacionalReducer,
+  listarResultadosInt: resultListarInteligenciaReducer
 });
 
 const store = createStore(

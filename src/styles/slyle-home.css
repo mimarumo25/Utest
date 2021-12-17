@@ -80,3 +80,15 @@ label {
   margin-top: 20px;
   color: #00598a;
 }
+li{
+  list-style: none; 
+}
+li:hover{
+  background-color: rgba(0, 0, 255, 0.164);
+}
+a{
+  text-decoration: none;
+}
+a:active{
+  color: rgba(39, 34, 33, 0.198);
+}
