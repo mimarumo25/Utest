@@ -19,8 +19,8 @@ export const acomuladores = (dato) => {
 export const acomuladoresVocacional = (dato) => {
   let acomu = 0;
   switch (dato) {
-    case "1":
-      acomu = 16;
+    case "0":
+      acomu = 6.25;
       break;
     default:
       break;
@@ -31,7 +31,7 @@ export const acomuladoresVocacional = (dato) => {
 export const acomuladoresPersonalidad = (dato) => {
   let acomu = 0;
   switch (dato) {
-    case "1":
+    case "0":
       acomu = 10;
       break;
     default:

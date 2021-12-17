@@ -26,7 +26,7 @@ const AppRouter = () => {
         setIsLoggedIn(false);
       }
     });
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch,isLoggedIn]);
   return (
     <Router>
       <Routes>

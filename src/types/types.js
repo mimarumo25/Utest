@@ -5,6 +5,8 @@ export const types = {
     listar: '[listar]listar',
     listarVocacional: '[listarVocacional]listar',
     listarPersonalidad: '[listarPersonalidad]listar',
-    categoria:'[Caterorias]categoria'
+    categoria: '[Caterorias]categoria',
+    listarResultadosVoca: '[listarResultadosVoca] listarResultadosVoca',
+    listarResultadosPers: '[listarResultadosPers] listarResultadosPers'
 
 }

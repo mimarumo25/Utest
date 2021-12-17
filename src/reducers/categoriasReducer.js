@@ -1,13 +1,11 @@
 import { types } from "../types/types";
-const initialState ={
-   categoria:[]
-}
-export const categoriaReducer = (state=initialState,action) => {
+
+export const categoriaReducer = (state={},action) => {
     switch (action.type) {
         
             case types.categoria:
             return{
-                categoria:[...state.categoria, action.payload]
+                categoria:[ action.payload]
             }
             default:
                 return state
