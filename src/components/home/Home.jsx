@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import home from "../../img/home.png";
+import home from "../../img/estudiante2.png";
 import p1 from '../../img/inteligencias.png';
 import p2 from '../../img/vocacional.png';
 import p3 from '../../img/cerebro.png';

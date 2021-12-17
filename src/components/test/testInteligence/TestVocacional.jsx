@@ -96,7 +96,7 @@ const TestVocacional = () => {
                         let errores = {};
 
                         if (!valores.radiocheck) {
-                          errores.radiocheck = "Por selecciona una opción";
+                          errores.radiocheck = "Para continuar selecciona una opción";
                         }
                         return errores;
                       }}

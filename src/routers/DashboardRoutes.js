@@ -21,7 +21,6 @@ export const DashboardRoutes = () => {
         <Route exact path="/testinteligencia" element={<Runtest />} />
         <Route exact path="/testvocacional" element={<TestVocacional />} />
         <Route exact path="/testPersonalidad" element={<TestPersonalidad />} />
-        <Route exact path="/validacion" element={<Validacionradio />} />
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/resultTest" element={<Resultados/>} />
         <Route exact path="/resultadosPersonalidad" element={<ResultadosPersonalidad/>} />

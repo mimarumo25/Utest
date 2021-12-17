@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer.jsx";
 import { useSelector } from "react-redux";
 
 export default function Resultados() {
     const {categoria} = useSelector(store => store.categoria)     
+    const [user, setUser] = useState(null);
+    console.log(user)
+  
+    // const [datos, setDatos] = useState([]);
+  
+    async function getDepartamento(uid){
+      const docuRef = doc(firestore, `usuarios/${uid}`)
+      const docuCifrada = await getDoc(docuRef)
+      const infoFinal = docuCifrada.data().departamento
+      return infoFinal;
+    }
+  
+  
+    const setUserWithFirebase = (usuarioFirebase) => {
+      getDepartamento(usuarioFirebase.uid).then((departamento)=>{
+        console.log(departamento)
+        const userData = {
+          uid: usuarioFirebase.uid,
+          departamento: departamento
+        }
+        setUser(userData)
+        console.log("userData final", userData)
+        
+      });
+    }
+  
+  
+    const auth = getAuth()
+    onAuthStateChanged(auth, (usuarioFirebase) => {
+      if (usuarioFirebase) {
+  
+      if(!user){
+        setUserWithFirebase(usuarioFirebase)
+      }
+       
+      }else{
+        setUser(null)
+      }
+      
+    });
    return (
     <div>
       <NavBar />

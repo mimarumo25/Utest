@@ -1,5 +1,16 @@
+import { useEffect, useState } from "react"
+import { Button, Card } from "react-bootstrap"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import Footer from '../../footer/Footer.jsx'
+import { Categoria } from "../../../actions/categoriaAction"
+import { acomuladoresPersonalidad } from "../../helpers/acomuladores"
+import Navbar from '../../navbar/Navbar.jsx'
+import { listarTestPersonalidad } from "../../../actions/listarTestPersonalidad"
+import { Field, Form, Formik } from "formik"
 
-
+const TestPersonalidad = () => {
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
@@ -17,11 +28,9 @@
     const [questions] = useSelector(state => state.listarPersonalidad.preguntas)
 
     useEffect(() => {
-
         dispatch(listarTestPersonalidad())
-
     },
-        [])
+        [dispatch])
 
     if (!questions) {
         return (
@@ -149,14 +158,10 @@
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     break;
-
                 case 'FlematicoApatico':
                     setFlematico(flematico + acomuladoresPersonalidad(radioCheck))
                     setApatico(apatico + acomuladoresPersonalidad(radioCheck))
                     break;
-
-
-
 
                 default:
                     break;
@@ -195,7 +200,7 @@
                                                 let errores = {};
 
                                                 if (!valores.radiocheck) {
-                                                    errores.radiocheck = "Por selecciona una opción";
+                                                    errores.radiocheck = "Para continuar selecciona una opción";
                                                 }
                                                 return errores;
                                             }}
@@ -224,8 +229,6 @@
                                                             <Field type="radio" name="radiocheck" value="1" className="mx-2" />
                                                             NO
                                                         </label>
-
-
                                                     </div>
 
                                                     {touched.radiocheck && errors.radiocheck && (
@@ -264,6 +267,7 @@
                                                         </div>
 
                                                     )}
+                                                    
                                                 </Form>
 
                                             )}
@@ -279,5 +283,5 @@
             </div>
         );
     }
-
+}
 export default TestPersonalidad;
