@@ -30,9 +30,7 @@ const Home = () => {
           <a className="btn btn-primary comenzar1" href="#pruebas">
             Pruebas
           </a>
-          <a className="btn btn-primary comenzar1" onClick={() => redirectprueba('/validacion')}>
-            Prueba validacion check
-          </a>
+     
         </div>
       </div>
 
