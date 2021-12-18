@@ -1,7 +1,7 @@
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { collection, getDoc,  getDocs, doc, getFirestore } from "firebase/firestore";
+import { getDoc, doc, getFirestore } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../firebase/firebase";
 
@@ -9,77 +9,61 @@ export const ModalResultados = (props) => {
   const [datosU, setDatosU] = useState([]);
   const [datosV, setDatosV] = useState([]);
 
-
   const [user, setUser] = useState(null);
-  
-  // const [datos, setDatos] = useState([]);
-const firestore = getFirestore(app)
 
+  const firestore = getFirestore(app);
 
-
-  async function getDepartamento(uid){
-    const docuRef = doc(firestore, `usuarios/${uid}`)
-    const docuCifrada = await getDoc(docuRef)
-    const infoFinal = docuCifrada.data().departamento
+  async function getDepartamento(uid) {
+    const docuRef = doc(firestore, `usuarios/${uid}`);
+    const docuCifrada = await getDoc(docuRef);
+    const infoFinal = docuCifrada.data().departamento;
     return infoFinal;
   }
 
-
   const setUserWithFirebase = (usuarioFirebase) => {
-    getDepartamento(usuarioFirebase.uid).then((departamento)=>{
+    getDepartamento(usuarioFirebase.uid).then((departamento) => {
       const userData = {
         uid: usuarioFirebase.uid,
-        departamento: departamento
-      }
-      setUser(userData)
-      console.log("userData final", userData)
-      
+        departamento: departamento,
+      };
+      setUser(userData);
+      console.log("userData final", userData);
     });
-  }
- console.log(user)
+  };
+  console.log(user);
 
-  const auth = getAuth()
+  const auth = getAuth();
   onAuthStateChanged(auth, (usuarioFirebase) => {
     if (usuarioFirebase) {
-
-    if(!user){
-      setUserWithFirebase(usuarioFirebase)
+      if (!user) {
+        setUserWithFirebase(usuarioFirebase);
+      }
+    } else {
+      setUser(null);
     }
-     
-    }else{
-      setUser(null)
-    }
-    
   });
 
-
-
   useEffect(() => {
-    if(user){
+    if (user) {
       obtenerUniversidad();
-    }   
-
+    }
   }, [user]);
 
   useEffect(() => {
     obtenerVideos();
   }, []);
-  const obtenerUniversidad =  () => {
-      
-     
-      axios
+  const obtenerUniversidad = () => {
+    axios
       .get(
-        `https://www.datos.gov.co/resource/n5yy-8nav.json?departamento_domicilio=${user.departamento}`
+        `https://www.datos.gov.co/resource/n5yy-8nav.json?departamento_domicilio=${user?.departamento}`
       )
       .then((resp) => {
-        console.log(resp)
+        console.log(resp);
         setDatosU(resp.data);
       })
       .catch((error) => {
         console.log(error);
       });
-    
-   
   };
   const obtenerVideos = async () => {
     await axios
@@ -325,7 +309,6 @@ const firestore = getFirestore(app)
             <div className="col-md-6">
               <h4>Universidades Cerca</h4>
               <div className="text-justify">
-               
                 {datosU?.map((u) => (
                   <div key={u?.c_digo_instituci_n}>
                     <li className="listas">
@@ -337,16 +320,18 @@ const firestore = getFirestore(app)
                         href={`https://${u?.p_gina_web}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        fs-6 text
+                        fs-6
+                        text
                       >
                         {u?.nombre_instituci_n}
                       </a>
                     </li>
                   </div>
                 ))}
-               
               </div>
-              <h4 className="pt-3">Infromacion Importante sobre becas en Colombia</h4>
+              <h4 className="pt-3">
+                Infromacion Importante sobre becas en Colombia
+              </h4>
               <div className="text-justify">
                 <li>
                   <a

@@ -5,12 +5,12 @@ import p1 from '../../img/inteligencias.png';
 import p2 from '../../img/vocacional.png';
 import p3 from '../../img/cerebro.png';
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+
 
 
 const Home = () => {
   
- const redirectprueba = useNavigate()
+ 
 
   return (
     <div className="container-lg">

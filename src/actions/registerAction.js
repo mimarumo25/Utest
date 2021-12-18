@@ -30,6 +30,7 @@ export const registerEmailPassword = (name, file,email, password, departamento) 
     return (dispatch) => {
         const auth = getAuth()
         createUserWithEmailAndPassword(auth, email, password, file)
+      
         .then(async({user})=>{
             await updateProfile(auth.currentUser, {displayName: name, photoURL:file})
             const docuRef = doc(db, `usuarios/${user.uid}`)

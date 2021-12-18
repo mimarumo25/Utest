@@ -4,15 +4,11 @@ import Footer from "../footer/Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalResultados } from "./ModalResultados";
 import { listarResultadosInteActions } from "../../actions/listarResultadosInteActions";
-import { collection, getDoc,  getDocs, doc, getFirestore } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "../../firebase/firebase";
+
 
 export default function Resultados() {
 
   const { resultado } = useSelector((store) => store.listarResultadosInt);
-
-  const [departamento, setDepartamento] = useState("")
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
   const [datos, setDatos] = useState("");
@@ -206,7 +202,6 @@ export default function Resultados() {
               data={data}
               result={"inteligencia"}
               area={datos}
-              dp={departamento}
             />
           </div>
         </div>

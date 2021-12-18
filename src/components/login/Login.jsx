@@ -6,6 +6,7 @@ import logo from '../../img/UTEST (4).png'
 import Footer from "../footer/Footer";
 import { Link } from "react-router-dom";
 import * as yup from 'yup'
+import Ubicacion from "../miUbicacion/Ubicacion";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -14,12 +15,13 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const dispatch = useDispatch()
- 
+  const ubicacion = Ubicacion()
+console.log(ubicacion);
   const handleLoginGoogle = () => {
-    dispatch(loginGoogle())
+    dispatch(loginGoogle(ubicacion))
   }
   const handleLoginFacebook = () => {
-    dispatch(loginFacebok())
+    dispatch(loginFacebok(ubicacion))
   }
  
   return (
@@ -33,18 +35,18 @@ const Login = () => {
 
         
 
-        // validate={()=>{
-        //     let errores ={}
+        validate={(valores)=>{
+             let errores ={}
            
-        //     if(!valores.email){
-        //         errores.email = 'Por favor ingresa un email'
-        //     }        
-        //      return errores;
+            if(!valores.email){
+                errores.email = 'Por favor ingresa un email'
+           }        
+             return errores;
 
-        //Validación Password
-          validationSchema={schema}
+     
+          //validationSchema={schema}
 
-        //  }}
+          }}
 
         onSubmit={(valores, { resetForm }) => {
         
@@ -90,6 +92,7 @@ const Login = () => {
                        {touched.password && errors.password && <div className="error">{errors.password}</div>}
                     </Form.Group>
                     <hr className="mt-4" />
+                    
                     <div className="d-flex justify-content-center mt-2">
                       <div onClick={() => handleLoginGoogle()} className="poiter">
                         <span

@@ -1,6 +1,7 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "@firebase/auth"
+import { doc, setDoc } from "firebase/firestore"
 import Swal from "sweetalert2"
-import { facebook, google } from "../firebase/firebase"
+import { db, facebook, google } from "../firebase/firebase"
 import { types } from "../types/types"
 
 export const login = (id, displayname, image) =>{
@@ -17,18 +18,21 @@ export const login = (id, displayname, image) =>{
     
 }
 
-export const loginGoogle = () =>{
+export const loginGoogle = (departamento) =>{
     return (dispatch) => {
         const auth = getAuth()
         signInWithPopup(auth,google)
         .then(({user})=>{
+            const docuRef = doc(db, `usuarios/${user.uid}`)
+            setDoc(docuRef,{departamento: departamento})
             dispatch(login(user.uid, user.displayName, user.photoURL))
+
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Inicio De Sesion Exitoso !!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
               })
         })
         .catch(e=>{
@@ -36,19 +40,20 @@ export const loginGoogle = () =>{
         })
     }
 }
-export const loginFacebok = () =>{
+export const loginFacebok = (departamento) =>{
     return (dispatch) => {
         const auth = getAuth()
         signInWithPopup(auth,facebook)
         .then(({user})=>{
-            
+            const docuRef = doc(db, `usuarios/${user.uid}`)
+            setDoc(docuRef,{departamento: departamento})
             dispatch(login(user.uid, user.displayName, user.photoURL))
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Inicio De Sesion Exitoso !!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
               })
         })
         .catch(e=>{
@@ -68,7 +73,7 @@ export const loginEmailPassword = (email,password,image) => {
                 icon: 'success',
                 title: 'Inicio De Sesion Exitoso !!',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500
               })
             
         })
