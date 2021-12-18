@@ -1,14 +1,16 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import home from "../../img/home.png";
+import home from "../../img/estudiante2.png";
 import p1 from '../../img/inteligencias.png';
 import p2 from '../../img/vocacional.png';
 import p3 from '../../img/cerebro.png';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
   
+ const redirectprueba = useNavigate()
 
   return (
     <div className="container-lg">
@@ -28,6 +30,7 @@ const Home = () => {
           <a className="btn btn-primary comenzar1" href="#pruebas">
             Pruebas
           </a>
+     
         </div>
       </div>
 

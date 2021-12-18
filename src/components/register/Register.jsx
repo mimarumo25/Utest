@@ -1,25 +1,35 @@
 import { Formik } from "formik";
 import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { useDispatch} from "react-redux";
-import { Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { registerEmailPassword } from "../../actions/registerAction";
 import Footer from "../footer/Footer";
 import { fileUpload } from "../helpers/FileUpload";
-import logo from '../../img/UTEST (4).png'
+import logo from "../../img/UTEST (4).png";
+import { authTypes } from "../../types/types";
 
 const Register = () => {
   const dispatch = useDispatch();
- 
- 
+  const error = useSelector(state => state.register.error)
+
+  const getErrorMessage = (err) => {
+    switch (err) {
+      case authTypes.emailInUse:
+        return 'Correo en uso'
+      
+    
+      default:
+        return 'Algo salió mal'
+    }
+  }
+
   return (
     <div>
-     
-
       <Formik
         initialValues={{
-          name: '',
-          file: '',
+          name: "",
+          file: "",
           email: "",
           password1: "",
           password2: "",
@@ -32,6 +42,7 @@ const Register = () => {
                 valores.file,
                 valores.email,
                 valores.password1,
+                valores.departamento
               )
             );
           } else {
@@ -53,13 +64,15 @@ const Register = () => {
         }) => (
           <div className="home">
             <div className="itemsform">
-            <div className="my-3">
+              <div className="my-3">
                 <Link to="/">
-                <img src={logo} alt="Logo" className="logoUser " />
+                  <img src={logo} alt="Logo" className="logoUser " />
                 </Link>
               </div>
               <Card>
-                <Card.Header><h1 className="text-center">REGISTRO</h1></Card.Header>
+                <Card.Header>
+                  <h1 className="text-center">REGISTRO</h1>
+                </Card.Header>
                 <Card.Body>
                   <Form className="formlogin" onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicName">
@@ -75,6 +88,8 @@ const Register = () => {
                       {touched.email && errors.email && (
                         <div className="error">{errors.email}</div>
                       )}
+                      
+                    
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicFile">
                       <Form.Label>Carga tu Foto</Form.Label>
@@ -84,15 +99,15 @@ const Register = () => {
                         name="file"
                         value={values.file}
                         onChange={(e) => {
-                          const file = e.target.files[0]
+                          const file = e.target.files[0];
                           fileUpload(file)
-                            .then(response => {
-                              values.file = response
+                            .then((response) => {
+                              values.file = response;
                               console.log(values.file);
                             })
-                            .catch(error => {
+                            .catch((error) => {
                               console.log(error.message);
-                            })
+                            });
                         }}
                         onBlur={handleBlur}
                       />
@@ -114,6 +129,66 @@ const Register = () => {
                       {touched.email && errors.email && (
                         <div className="error">{errors.email}</div>
                       )}
+
+                      {error && (
+                        <div className="error text-danger">{getErrorMessage(error)}</div>
+                      )}
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Elegir Departamento</Form.Label>
+                      <select
+                        class="form-control"
+                        id="departamento"
+                        name="departamento"
+                        value={values.departamento}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        required
+                      >
+                        <option
+                          value=""
+                         
+                        >
+                         Seleccione un departamento
+                        </option>
+                        <option value="Amazonas">Amazonas</option>
+                        <option value="Antioquia">Antioquia</option>
+                        <option value="Arauca">Arauca</option>
+                        <option value="Atlántico">Atlántico</option>
+                        <option value="Bolívar">Bolívar</option>
+                        <option value="Boyacá">Boyacá</option>
+                        <option value="Caldas">Caldas</option>
+                        <option value="Caquetá">Caquetá</option>
+                        <option value="Casanare">Casanare</option>
+                        <option value="Cauca">Cauca</option>
+                        <option value="Cesar">Cesar</option>
+                        <option value="Chocó">Chocó</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Cundinamarca">Cundinamarca</option>
+                        <option value="Guainía">Guainía</option>
+                        <option value="Guaviare">Guaviare</option>
+                        <option value="Huila">Huila</option>
+                        <option value="La Guajira">La Guajira</option>
+                        <option value="Magdalena">Magdalena</option>
+                        <option value="Meta">Meta</option>
+                        <option value="Nariño">Nariño</option>
+                        <option value="Norte de Santander">
+                          Norte de Santander
+                        </option>
+                        <option value="Putumayo">Putumayo</option>
+                        <option value="Quindío">Quindío</option>
+                        <option value="Risaralda">Risaralda</option>
+                        <option value="San Andrés y Providencia">
+                          San Andrés y Providencia
+                        </option>
+                        <option value="Santander">Santander</option>
+                        <option value="Sucre">Sucre</option>
+                        <option value="Tolima">Tolima</option>
+                        <option value="Valle del Cauca">Valle del Cauca</option>
+                        <option value="Vaupés">Vaupés</option>
+                        <option value="Vichada">Vichada</option>
+                      </select>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -147,7 +222,8 @@ const Register = () => {
                     </div>
                     <hr />
                     <span>
-                      ¿Ya tienes una cuenta? <Link to="/login"> Inicia sesión</Link>
+                      ¿Ya tienes una cuenta?{" "}
+                      <Link to="/login"> Inicia sesión</Link>
                     </span>
                   </Form>
                 </Card.Body>
@@ -159,7 +235,6 @@ const Register = () => {
       <Footer />
     </div>
   );
- 
 };
 
 export default Register;

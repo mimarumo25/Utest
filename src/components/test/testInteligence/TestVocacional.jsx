@@ -10,8 +10,7 @@ import Navbar from '../../navbar/Navbar.jsx'
 import { listarPreguntasTestVocacional } from "../../../actions/listarTesVAction"
 import { Field, Form, Formik } from "formik"
 
-const TestVocacional = () => {
-
+const TestVocacional = () => {  
   const [next, setNext] = useState(1);
   const [statetest, setStatetest] = useState(false);
   const [guardarTest, setGuardarTest] = useState(true);
@@ -95,7 +94,7 @@ const TestVocacional = () => {
                         let errores = {};
 
                         if (!valores.radiocheck) {
-                          errores.radiocheck = "Por selecciona una opción";
+                          errores.radiocheck = "Para continuar selecciona una opción";
                         }
                         return errores;
                       }}

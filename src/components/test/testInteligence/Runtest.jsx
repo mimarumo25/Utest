@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react"
 import { Button, Card } from "react-bootstrap"
 import { useSelector } from "react-redux"
@@ -106,7 +107,7 @@ const Runtest = () => {
                                                 let errores = {};
 
                                                 if (!valores.radiocheck) {
-                                                    errores.radiocheck = "Por selecciona una opción";
+                                                    errores.radiocheck = "Para continuar selecciona una opción";
                                                 }
                                                 return errores;
                                             }}

@@ -1,30 +1,87 @@
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { collection, getDoc,  getDocs, doc, getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../../firebase/firebase";
 
 export const ModalResultados = (props) => {
   const [datosU, setDatosU] = useState([]);
   const [datosV, setDatosV] = useState([]);
+
+
+  const [user, setUser] = useState(null);
+  
+  // const [datos, setDatos] = useState([]);
+const firestore = getFirestore(app)
+
+
+
+  async function getDepartamento(uid){
+    const docuRef = doc(firestore, `usuarios/${uid}`)
+    const docuCifrada = await getDoc(docuRef)
+    const infoFinal = docuCifrada.data().departamento
+    return infoFinal;
+  }
+
+
+  const setUserWithFirebase = (usuarioFirebase) => {
+    getDepartamento(usuarioFirebase.uid).then((departamento)=>{
+      const userData = {
+        uid: usuarioFirebase.uid,
+        departamento: departamento
+      }
+      setUser(userData)
+      console.log("userData final", userData)
+      
+    });
+  }
+ console.log(user)
+
+  const auth = getAuth()
+  onAuthStateChanged(auth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
+
+    if(!user){
+      setUserWithFirebase(usuarioFirebase)
+    }
+     
+    }else{
+      setUser(null)
+    }
+    
+  });
+
+
+
   useEffect(() => {
-    obtenerUniversidad();
-  }, []);
+    if(user){
+      obtenerUniversidad();
+    }   
+
+  }, [user]);
+
   useEffect(() => {
     obtenerVideos();
   }, []);
-  const obtenerUniversidad = async () => {
-    await axios
+  const obtenerUniversidad =  () => {
+      
+     
+      axios
       .get(
-        "https://www.datos.gov.co/resource/n5yy-8nav.json?departamento_domicilio=Choc%C3%B3"
+        `https://www.datos.gov.co/resource/n5yy-8nav.json?departamento_domicilio=${user.departamento}`
       )
       .then((resp) => {
+        console.log(resp)
         setDatosU(resp.data);
       })
       .catch((error) => {
         console.log(error);
       });
+    
+   
   };
   const obtenerVideos = async () => {
-    console.log(props.area);
     await axios
       .get(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${props?.area}&type=video&key=AIzaSyDUhW1yAFZX6wjVOSXnWTNPPFUmBxnUq9E`
@@ -247,7 +304,6 @@ export const ModalResultados = (props) => {
       </Modal>
     );
   } else if (props.result === "inteligencia") {
-    console.log(datosV);
     return (
       <Modal
         {...props}
