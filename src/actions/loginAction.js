@@ -1,4 +1,5 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "@firebase/auth"
+import Swal from "sweetalert2"
 import { facebook, google } from "../firebase/firebase"
 import { types } from "../types/types"
 
@@ -21,10 +22,14 @@ export const loginGoogle = () =>{
         const auth = getAuth()
         signInWithPopup(auth,google)
         .then(({user})=>{
-
-
-            console.log(user.photoURL)
             dispatch(login(user.uid, user.displayName, user.photoURL))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Inicio De Sesion Exitoso !!',
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
         .catch(e=>{
             console.log(e)
@@ -38,6 +43,13 @@ export const loginFacebok = () =>{
         .then(({user})=>{
             
             dispatch(login(user.uid, user.displayName, user.photoURL))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Inicio De Sesion Exitoso !!',
+                showConfirmButton: false,
+                timer: 1500
+              })
         })
         .catch(e=>{
             console.log(e)
@@ -51,6 +63,13 @@ export const loginEmailPassword = (email,password,image) => {
         signInWithEmailAndPassword(auth, email, password,image)
         .then(({user})=>{
             dispatch(login(user.uid, user.displayName, user.photoURL))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Inicio De Sesion Exitoso !!',
+                showConfirmButton: false,
+                timer: 1500
+              })
             
         })
         .catch(error => {

@@ -47,11 +47,9 @@ const Login = () => {
         //  }}
 
         onSubmit={(valores, { resetForm }) => {
-          // setenvioformulario(true)
+        
           dispatch(loginEmailPassword(valores.email, valores.password))
           resetForm()
-          console.log(valores)
-          console.log("formulario enviado")
         }}>
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => (
           <div className="home">
