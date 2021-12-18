@@ -8,6 +8,7 @@ import { ModalResultados } from "./ModalResultados";
 export default function ResultadosPersonalidad() {
   const { categoria } = useSelector((store) => store.categoria);
   const { resultado } = useSelector((store) => store.listarResultadosPers);
+  
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
 
@@ -15,7 +16,7 @@ export default function ResultadosPersonalidad() {
 
   useEffect(() => {
     dispatch(listarResultadosPersActions());
-  }, []);
+  }, [dispatch]);
 
   const hanndleModal = (cat) => {
     const resp = resultado.find(
@@ -249,7 +250,6 @@ export default function ResultadosPersonalidad() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

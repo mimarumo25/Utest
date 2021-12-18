@@ -15,6 +15,7 @@ export default function Validacionradio() {
   // const [datos, setDatos] = useState([]);
 
   async function getDepartamento(uid){
+    console.log(uid)
     const docuRef = doc(firestore, `usuarios/${uid}`)
     const docuCifrada = await getDoc(docuRef)
     const infoFinal = docuCifrada.data().departamento

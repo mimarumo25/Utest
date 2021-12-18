@@ -16,6 +16,16 @@ export const register = (name, img, email, password, departamento) => {
     }
 }
 
+
+export const setRegisterError = (error) => {
+    return {
+        type: types.registerError,
+        payload: {
+           error
+        }
+    }
+}
+
 export const registerEmailPassword = (name, file,email, password, departamento) =>{
     return (dispatch) => {
         const auth = getAuth()
@@ -25,6 +35,8 @@ export const registerEmailPassword = (name, file,email, password, departamento) 
             const docuRef = doc(db, `usuarios/${user.uid}`)
             setDoc(docuRef,{departamento: departamento})
             dispatch(register(user.displayName, user.photoURL, user.email, user.uid, departamento))
+        }).catch((error) => {
+           dispatch(setRegisterError(error.code))
         })
     }
 }

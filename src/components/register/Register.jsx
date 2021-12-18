@@ -1,15 +1,28 @@
 import { Formik } from "formik";
 import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { registerEmailPassword } from "../../actions/registerAction";
 import Footer from "../footer/Footer";
 import { fileUpload } from "../helpers/FileUpload";
 import logo from "../../img/UTEST (4).png";
+import { authTypes } from "../../types/types";
 
 const Register = () => {
   const dispatch = useDispatch();
+  const error = useSelector(state => state.register.error)
+
+  const getErrorMessage = (err) => {
+    switch (err) {
+      case authTypes.emailInUse:
+        return 'Correo en uso'
+      
+    
+      default:
+        return 'Algo salió mal'
+    }
+  }
 
   return (
     <div>
@@ -75,6 +88,8 @@ const Register = () => {
                       {touched.email && errors.email && (
                         <div className="error">{errors.email}</div>
                       )}
+                      
+                    
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicFile">
                       <Form.Label>Carga tu Foto</Form.Label>
@@ -113,6 +128,10 @@ const Register = () => {
 
                       {touched.email && errors.email && (
                         <div className="error">{errors.email}</div>
+                      )}
+
+                      {error && (
+                        <div className="error text-danger">{getErrorMessage(error)}</div>
                       )}
                     </Form.Group>
 

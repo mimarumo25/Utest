@@ -36,8 +36,9 @@ const TestPersonalidad = () => {
         return (
             <>
                 <Navbar />
-
-                <h3>esperando...</h3>
+                <div className="container">
+                    <h3 className="text-center">esperando...</h3>
+                </div>
             </>)
 
 

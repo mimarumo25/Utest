@@ -1,10 +1,9 @@
 
 import { useEffect, useState } from "react"
-import { Button, Card, FormGroup } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { Link, useParams } from "react-router-dom"
-import { Input, Label } from "reactstrap"
+import { Link } from "react-router-dom"
 import { listarPreguntas } from "../../../actions/listarAction"
 import Footer from '../../footer/Footer.jsx'
 import { Categoria } from "../../../actions/categoriaAction"
@@ -17,12 +16,9 @@ import { Field, Form, Formik } from "formik"
 
 const Runtest = () => {
 
-    const { test } = useParams()
-
     const [next, setNext] = useState(1);
     const [statetest, setStatetest] = useState(false);
     const [guardarTest, setGuardarTest] = useState(true);
-    //const [radioCheck, setRadioCheck] = useState();
     const [categorias, setCategorias] = useState([]);
     const [a, setA] = useState(0);
     const [b, setB] = useState(0);
@@ -43,7 +39,9 @@ const Runtest = () => {
         return (
             <>
                 <Navbar />
-                <h3>esperando...</h3>
+                <div className="container">
+                    <h3 className="text-center">esperando...</h3>
+                </div>
             </>
         )
     } else {
@@ -136,18 +134,18 @@ const Runtest = () => {
                                                         </label>
 
                                                         <label>
-                                                            <Field type="radio" name="radiocheck" value="1" className="mx-2"/>
+                                                            <Field type="radio" name="radiocheck" value="1" className="mx-2" />
                                                             Uno
                                                         </label>
 
 
                                                         <label>
-                                                            <Field type="radio" name="radiocheck" value="2" className="mx-2"/>
+                                                            <Field type="radio" name="radiocheck" value="2" className="mx-2" />
                                                             Dos
                                                         </label>
 
                                                         <label>
-                                                            <Field type="radio" name="radiocheck" value="3" className="mx-2"/>
+                                                            <Field type="radio" name="radiocheck" value="3" className="mx-2" />
                                                             Tres
                                                         </label>
 
@@ -193,7 +191,13 @@ const Runtest = () => {
                                     </div>
                                 </div>
 
-
+                                <div className="d-flex justify-content-end">
+                                    <Link to="/resultTest">
+                                        <Button variant="primary" onClick={handleVerResult}>
+                                            Ver Resultados
+                                        </Button>
+                                    </Link>
+                                </div>
                             </Card.Body>
                         </Card>
                     </div>
