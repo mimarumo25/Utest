@@ -27,10 +27,8 @@ export const ModalResultados = (props) => {
         departamento: departamento,
       };
       setUser(userData);
-      console.log("userData final", userData);
     });
   };
-  console.log(user);
 
   const auth = getAuth();
   onAuthStateChanged(auth, (usuarioFirebase) => {
@@ -52,13 +50,16 @@ export const ModalResultados = (props) => {
   useEffect(() => {
     obtenerVideos();
   }, []);
+  useEffect(() => {
+    obtenerVideos();
+  }, []);
+
   const obtenerUniversidad = () => {
     axios
       .get(
         `https://www.datos.gov.co/resource/n5yy-8nav.json?departamento_domicilio=${user?.departamento}`
       )
       .then((resp) => {
-        console.log(resp);
         setDatosU(resp.data);
       })
       .catch((error) => {
@@ -167,7 +168,7 @@ export const ModalResultados = (props) => {
     return (
       <Modal
         {...props}
-        fullscreen="xxl-down"
+        fullscreen={"fullscreen"}
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
@@ -273,9 +274,7 @@ export const ModalResultados = (props) => {
                     height="315"
                     src={`https://www.youtube.com/embed/${v.id.videoId}`}
                     title="YouTube video player"
-                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
                   ></iframe>
                 </div>
               ))}
@@ -305,6 +304,14 @@ export const ModalResultados = (props) => {
             <div className="col-6">
               <h4>Caracteristicas de la {props?.area}</h4>
               <p>{props.data.resultado}</p>
+              <h4>Carreras Recomendadas para el area de la {props?.area}</h4>
+              {props.carrera.length > 0
+                ? props.carrera.map((c, i) => (
+                    <div key={i}>
+                      <li className="listas">{c.profesion}</li>
+                    </div>
+                  ))
+                : ""}
             </div>
             <div className="col-md-6">
               <h4>Universidades Cerca</h4>
@@ -395,9 +402,7 @@ export const ModalResultados = (props) => {
                     height="315"
                     src={`https://www.youtube.com/embed/${v.id.videoId}`}
                     title="YouTube video player"
-                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
                   ></iframe>
                 </div>
               ))}
