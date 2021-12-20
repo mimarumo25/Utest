@@ -69,7 +69,7 @@ export const ModalResultados = (props) => {
   const obtenerVideos = async () => {
     await axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${props?.area}&type=video&key=AIzaSyDUhW1yAFZX6wjVOSXnWTNPPFUmBxnUq9E`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${props?.area}&type=video&key=AIzaSyB3Dc3o7shkBjaWT9jUiGUrtX0OD0Yudn4`
       )
       .then((resp) => {
         setDatosV(resp.data.items);
@@ -302,9 +302,9 @@ export const ModalResultados = (props) => {
         <Modal.Body>
           <div className="row">
             <div className="col-6">
-              <h4>Caracteristicas de la {props?.area}</h4>
+              <h4>Caracteristicas de la {props?.data.categoria}</h4>
               <p>{props.data.resultado}</p>
-              <h4>Carreras Recomendadas para el area de la {props?.area}</h4>
+              <h4>Carreras Recomendadas para el area de la {props?.data.categoria}</h4>
               {props.carrera.length > 0
                 ? props.carrera.map((c, i) => (
                     <div key={i}>
@@ -337,7 +337,7 @@ export const ModalResultados = (props) => {
                 ))}
               </div>
               <h4 className="pt-3">
-                Infromacion Importante sobre becas en Colombia
+                Información Importante sobre becas en Colombia
               </h4>
               <div className="text-justify">
                 <li>
