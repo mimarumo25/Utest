@@ -4,35 +4,53 @@ import Footer from "../footer/Footer.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalResultados } from "./ModalResultados";
 import { listarResultadosInteActions } from "../../actions/listarResultadosInteActions";
+import { app, db } from "../../firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
+import { Button } from "reactstrap";
 
 export default function Resultados() {
-
   const { resultado } = useSelector((store) => store.listarResultadosInt);
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState({});
   const [datos, setDatos] = useState("");
+  const [carrerasInt, setCarrerasInt] = useState({});
+  const [dataCarrerasInt, setDataCarrerasInt] = useState({});
 
   const dispatch = useDispatch();
-    const {categoria} = useSelector(store => store.categoria)     
-   
-
+  const { categoria } = useSelector((store) => store.categoria);
 
   useEffect(() => {
     dispatch(listarResultadosInteActions());
   }, [dispatch]);
 
+  useEffect(() => {
+    listarCarrerasInte();
+  }, [data]);
+  const listarCarrerasInte = async () => {
+    const querySnapshot = await getDocs(
+      collection(db, "carrerastipointeligencia")
+    );
+    const respuesta = [];
+    querySnapshot.forEach((doc) => {
+      respuesta.push({
+        ...doc.data(),
+      });
+    });
+    setCarrerasInt(respuesta);
+  };
 
   const hanndleModal = (cat) => {
-    console.log(cat.toLowerCase());
-   
     const resp = resultado.find(
       (rs) => rs.categoria?.toLowerCase() === cat.toLowerCase()
     );
-     setModalShow(true);
+    const resp1 = carrerasInt.filter(
+      (rs) => rs.area?.toLowerCase() === cat.toLowerCase()
+    );
+    setModalShow(true);
     setData(resp);
-    // setDepartamento(user.departamento)
-    setDatos(cat)
+    setDatos(cat);
+    setDataCarrerasInt(resp1);
   };
   return (
     <div>
@@ -68,7 +86,7 @@ export default function Resultados() {
                 B) Inteligencia Lógico-matemática{"  "}
                 <small
                   className=" btn-outline-success my-1"
-                  onClick={() => hanndleModal("inteligencia logico-matematica")}
+                  onClick={() => hanndleModal("Inteligencia Lógico-matemática")}
                 >
                   Ver Más
                 </small>
@@ -201,13 +219,17 @@ export default function Resultados() {
               onHide={() => setModalShow(false)}
               data={data}
               result={"inteligencia"}
-              area={datos}
+              carrera={dataCarrerasInt}
             />
           </div>
         </div>
-      </div>
 
-      <Footer />
+        <div>
+          <Button>Guardar</Button>
+        </div>
+
+        <Footer />
+      </div>
     </div>
   );
 }
