@@ -187,13 +187,7 @@ const Runtest = () => {
 
                                             )}
                                         </Formik>
-                                        <div className="d-flex justify-content-end">
-                                                            <Link to="/resultTest">
-                                                                <Button variant="primary" onClick={handleVerResult}>
-                                                                    Ver Resultados
-                                                                </Button>
-                                                            </Link>
-                                                        </div>
+                                      
                                     </div>
                                 </div>
                             </Card.Body>
